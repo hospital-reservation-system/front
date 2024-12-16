@@ -6,7 +6,7 @@
     border: 2px solid #ffea3c;
     gap: 8px;
     cursor: pointer;
-    color: #666666;
+    color: #cccccc;
 
     &.nonBorder {
         border: none;
@@ -16,7 +16,7 @@
     }
 
     &.check {
-        color: #000000;
+        color: #666666;
     }
 }
 

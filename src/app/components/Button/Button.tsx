@@ -8,11 +8,15 @@ type BtnProps = {
     label: string;
     onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     backgroundColor: "#FFEA3C" | "#FFFFFF";
+    borderColor: "#BFC662" | "#CCCCCC";
 };
 
 const Button = (props: BtnProps) => {
-    const { label, onClick, backgroundColor } = props;
-    const buttonStyle = { backgroundColor };
+    const { label, onClick, backgroundColor, borderColor } = props;
+    const buttonStyle = {
+        backgroundColor,
+        border: `1px solid ${borderColor}`,
+    };
 
     return (
         <button className={cx("btn")} onClick={onClick} style={buttonStyle}>

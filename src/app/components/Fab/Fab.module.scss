@@ -2,7 +2,7 @@
     width: 74px;
     height: 437px;
     border-radius: 37px;
-    border: 1px solid #cccccc;
+    border: 1px solid #eeeeee;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -39,7 +39,7 @@
         }
 
         &:not(:first-child) {
-            border-top: 1px solid #cccccc;
+            border-top: 1px solid #eeeeee;
         }
 
         &:hover {
