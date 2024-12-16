@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./Fab.module.scss";
