@@ -3,19 +3,32 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/** daypicker css*/
+* {
+    --rdp-today-color: #000000;
+    --rdp-accent-color: #000000;
+    --rdp-accent-background-color: #000000;
+    --rdp-selected-border: 1px solid #000000;
+    --rdp-range_start-color: #ffffff;
+    --rdp-range_start-date-background-color: #000000;
+    --rdp-outline: #000000;
+    --rdp-day-width: 60px;
+    --rdp-day-height: 70px;
 }
