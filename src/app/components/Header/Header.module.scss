@@ -1,0 +1,27 @@
+.HeaderWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1920px;
+    height: 533px;
+    min-height: 80px;
+    padding: 11px 48px;
+    background-color: #fffce3;
+
+    .logoContainer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2px;
+
+        .logoIcon {
+            width: 64px;
+            height: 64px;
+        }
+
+        .logoTitle {
+            width: 217px;
+            height: 50px;
+        }
+    }
+}
