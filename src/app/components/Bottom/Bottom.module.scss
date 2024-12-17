@@ -1,0 +1,37 @@
+.bottomWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1920px;
+    height: 100px;
+    height: 192px;
+    padding: 64px 56px;
+    background-color: #4c4c4c;
+    border-radius: 50px 50px 0 0;
+
+    .logoContainer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 12px;
+
+        .logoIcon {
+            width: 49.41px;
+            height: 46.76px;
+        }
+
+        .logoTitle {
+            width: 212.17px;
+            height: 50px;
+        }
+    }
+
+    .snsContainer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        gap: 12px;
+    }
+}
