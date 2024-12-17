@@ -9,7 +9,7 @@ const cx = cn.bind(styles);
 const searchbar = () => {
     return (
         <div className={cx("searchBarWrapper")}>
-            <div className={cx("searchInput")}></div>
+            <input type="text" className={cx("searchInput")} />
             <button className={cx("searchBtn")}>검색</button>
         </div>
     );
