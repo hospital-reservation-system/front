@@ -2,7 +2,7 @@
 
 import React from "react";
 import cn from "classnames/bind";
-import styles from "./Common.module.scss";
+import styles from "./TextInput.module.scss";
 
 const cx = cn.bind(styles);
 

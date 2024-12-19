@@ -6,7 +6,7 @@ import styles from "./Reservation.module.scss";
 import Header from "@/app/components/Header/Header";
 import Calander from "@/app/components/Calander/Calander";
 import Button from "@/app/components/Button/Button";
-import CommonInput from "@/app/components/TextField/CommonInput/Common";
+import TextInput from "@/app/components/TextField/TextInput/TextInput";
 import BirthInput from "@/app/components/TextField/BirthInput/Birth";
 import PhoneInput from "@/app/components/TextField/PhoneInput/Phone";
 import Radio from "@/app/components/Radio/Radio";
@@ -44,7 +44,7 @@ const Reservation = () => {
                             />
                         </div>
                         <div className={cx("reservatioInput")}>
-                            <CommonInput label="예약자명" />
+                            <TextInput label="예약자명" />
                             <BirthInput />
                             <PhoneInput />
                         </div>
