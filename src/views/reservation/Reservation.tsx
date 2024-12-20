@@ -2,26 +2,23 @@
 
 import React from "react";
 import cn from "classnames/bind";
-import styles from './Reservation.module.scss';
-import Header from "@/components/Header/Header";
+import styles from "./Reservation.module.scss";
 import Calander from "@/components/Calander/Calander";
 import Button from "@/components/Button/Button";
-import CommonInput from "@/components/TextField/CommonInput/Common";
+import TextInput from "@/components/TextField/TextInput/TextInput";
 import BirthInput from "@/components/TextField/BirthInput/Birth";
 import PhoneInput from "@/components/TextField/PhoneInput/Phone";
 import Radio from "@/components/Radio/Radio";
 import ReservationCard from "@/components/ReservationCard/ReservationCard";
-import Bottom from "@/components/Bottom/Bottom";
 
 const cx = cn.bind(styles);
 
 const Reservation = () => {
     return (
         <div className={cx("reservationWrapper")}>
-            <Header />
-            <div className={cx("reservationSection")}>
+            <section className={cx("reservationSection")}>
                 <h1 className={cx("reservationTitle")}>건강 검진 예약</h1>
-                <section className={cx("reservationContainer")}>
+                <div className={cx("reservationContainer")}>
                     <div className={cx("calander")}>
                         <Calander />
                     </div>
@@ -44,7 +41,7 @@ const Reservation = () => {
                             />
                         </div>
                         <div className={cx("reservatioInput")}>
-                            <CommonInput label="예약자명" />
+                            <TextInput label="예약자명" />
                             <BirthInput />
                             <PhoneInput />
                         </div>
@@ -84,9 +81,8 @@ const Reservation = () => {
                             borderColor="#BFC662"
                         />
                     </div>
-                </section>
-            </div>
-            <Bottom />
+                </div>
+            </section>
         </div>
     );
 };

@@ -9,8 +9,8 @@ const cx = cn.bind(styles);
 type TextInputProps = {
     label: string;
     requiredSymbol?: React.ReactNode;
-    width?: string | number;
-    height?: string | number;
+    width: string | number;
+    height: string | number;
 };
 
 const TextInput = (props: TextInputProps) => {
