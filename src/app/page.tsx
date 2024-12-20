@@ -1,4 +1,4 @@
-import Reservation from "./view/reservation/Reservation";
+import Reservation from "@/views/reservation/Reservation";
 
 const Home = () => {
     return (
