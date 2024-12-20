@@ -1,5 +1,5 @@
 .inputWrapper {
-    width: 432px;
+    width: 423px;
     height: 88px;
 
     .inputTitle {
@@ -7,13 +7,14 @@
         line-height: 28px;
     }
 
-    .dateSelector {
+    .inputNumber {
         display: flex;
-        width: 432px;
+        width: 423px;
         height: 48px;
         gap: 12px;
 
-        .dropDown {
+        .dropDown,
+        .phoneInput {
             width: 136px;
             height: 48px;
             border: 1px solid #dddddd;

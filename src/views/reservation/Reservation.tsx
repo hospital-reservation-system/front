@@ -2,16 +2,16 @@
 
 import React from "react";
 import cn from "classnames/bind";
-import styles from "./Reservation.module.scss";
-import Header from "@/app/components/Header/Header";
-import Calander from "@/app/components/Calander/Calander";
-import Button from "@/app/components/Button/Button";
-import TextInput from "@/app/components/TextField/TextInput/TextInput";
-import BirthInput from "@/app/components/TextField/BirthInput/Birth";
-import PhoneInput from "@/app/components/TextField/PhoneInput/Phone";
-import Radio from "@/app/components/Radio/Radio";
-import ReservationCard from "@/app/components/ReservationCard/ReservationCard";
-import Bottom from "@/app/components/Bottom/Bottom";
+import styles from './Reservation.module.scss';
+import Header from "@/components/Header/Header";
+import Calander from "@/components/Calander/Calander";
+import Button from "@/components/Button/Button";
+import CommonInput from "@/components/TextField/CommonInput/Common";
+import BirthInput from "@/components/TextField/BirthInput/Birth";
+import PhoneInput from "@/components/TextField/PhoneInput/Phone";
+import Radio from "@/components/Radio/Radio";
+import ReservationCard from "@/components/ReservationCard/ReservationCard";
+import Bottom from "@/components/Bottom/Bottom";
 
 const cx = cn.bind(styles);
 
@@ -44,12 +44,7 @@ const Reservation = () => {
                             />
                         </div>
                         <div className={cx("reservatioInput")}>
-                            <TextInput
-                                label="예약자명"
-                                requiredSymbol="*"
-                                width="432px"
-                                height="48px"
-                            />
+                            <CommonInput label="예약자명" />
                             <BirthInput />
                             <PhoneInput />
                         </div>
