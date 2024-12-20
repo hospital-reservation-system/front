@@ -6,21 +6,36 @@ import styles from "./TextInput.module.scss";
 
 const cx = cn.bind(styles);
 
-type CommonProps = {
+type TextInputProps = {
     label: string;
+    requiredSymbol?: React.ReactNode;
+    width?: string | number;
+    height?: string | number;
 };
 
-const Common = (props: CommonProps) => {
-    const { label } = props;
+const TextInput = (props: TextInputProps) => {
+    const { label, requiredSymbol, width, height } = props;
+
     return (
         <div className={cx("inputWrapper")}>
             <div className={cx("inputTitle")}>
                 {label}
-                <span className={cx("requiredSymbol")}>*</span>
+                {requiredSymbol && (
+                    <span className={cx("requiredSymbol")}>
+                        {requiredSymbol}
+                    </span>
+                )}
             </div>
-            <input type="text" className={cx("inputContent")} />
+            <input
+                type="text"
+                className={cx("inputContent")}
+                style={{
+                    width: typeof width === "number" ? `${width}px` : width,
+                    height: typeof height === "number" ? `${height}px` : height,
+                }}
+            />
         </div>
     );
 };
 
-export default Common;
+export default TextInput;

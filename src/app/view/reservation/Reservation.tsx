@@ -44,7 +44,12 @@ const Reservation = () => {
                             />
                         </div>
                         <div className={cx("reservatioInput")}>
-                            <TextInput label="예약자명" />
+                            <TextInput
+                                label="예약자명"
+                                requiredSymbol="*"
+                                width="432px"
+                                height="48px"
+                            />
                             <BirthInput />
                             <PhoneInput />
                         </div>
