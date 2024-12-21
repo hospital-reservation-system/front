@@ -1,0 +1,204 @@
+.checkupRegisterWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .background {
+        background-color: #fffce3;
+        width: 100%;
+        height: 433px;
+        // position: relative;
+    }
+
+    .checkupRegisterSection {
+        width: 1180px;
+        padding-bottom: 80px;
+        // position: absolute;
+
+        z-index: 10;
+
+        .checkupRegisterTitle {
+            font-size: 60px;
+            font-weight: 700;
+            line-height: 50px;
+            text-align: center;
+            padding-bottom: 64px;
+        }
+
+        .checkupRegisterContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 48px 12px;
+            border-radius: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+            .selectHospital {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+                padding-bottom: 80px;
+
+                .hospitaltextInput {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-gap: 24px;
+                }
+
+                .reservationInfo {
+                    color: #ff0000;
+
+                    .warningText {
+                        padding-top: 16px;
+                    }
+                }
+            }
+            .reserverInfo {
+                padding-bottom: 80px;
+                position: relative;
+
+                .reserverTextInput {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-gap: 24px;
+                }
+                .addressBtn {
+                    position: absolute;
+                    bottom: 80px;
+                    left: 330px;
+                    width: 81px;
+                    height: 48px;
+                    background-color: #ffea3c;
+                    cursor: pointer;
+                }
+
+                .selectTIime {
+                    display: flex;
+                    flex-direction: column;
+
+                    .selectTIimeInput {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                        padding-top: 16px;
+                        font-weight: 300;
+                    }
+                    .selectTIimeInput p {
+                        font-size: 30px;
+                        font-weight: 300;
+                    }
+
+                    .selectTIimeInput input {
+                        width: 60px;
+                        height: 48px;
+                        border: 1px solid #dddddd;
+                    }
+                }
+
+                .selectGender {
+                    padding: 24px 0;
+                    .requiredSymbol {
+                        color: red;
+                        font-size: 16px;
+                        margin-left: 4px;
+                    }
+                    .selectGenderInput {
+                        display: flex;
+                        flex-direction: row;
+                        padding-top: 16px;
+                        gap: 16px;
+                    }
+                }
+            }
+
+            .optionItem {
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 80px;
+
+                .optionItemInfo {
+                    color: #ff0000;
+                    font-weight: bold;
+                }
+
+                .selectCheck {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 30px;
+                    padding-top: 40px;
+
+                    .selectCheckTitle {
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+
+                    .selectCheckSubTitle {
+                        color: #999999;
+                    }
+                }
+
+                .checkCategory {
+                    border: 1px solid #ffea3c;
+                    border-radius: 20px;
+                    background-color: #f2f2f2;
+                    padding: 13px;
+                    width: 904px;
+                    height: 80px;
+                    display: flex;
+                    flex-direction: row;
+                    white-space: nowrap;
+                    flex-wrap: wrap;
+                    gap: 13px;
+                }
+
+                .comment {
+                    font-size: 20px;
+                    padding: 40px 0 5px;
+                }
+
+                .commentInfo {
+                    color: #ff0000;
+                    padding-bottom: 5px;
+                }
+
+                .commentInput {
+                    width: 996px;
+                    height: 48px;
+                    border: 1px solid #dddddd;
+                }
+            }
+            .agreement {
+                padding-bottom: 80px;
+
+                .priceContainer {
+                    padding-bottom: 50px;
+                    .price {
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        padding: 20px;
+                        width: 485px;
+                        height: 75px;
+                        border: 1px solid #dddddd;
+                        border-radius: 40px;
+                        margin-bottom: 10px;
+                    }
+
+                    .price span {
+                        color: #1957a4;
+                    }
+                }
+
+                .privacyPolicy {
+                    padding-bottom: 15px;
+                }
+                .privacyPolicy p {
+                    padding-bottom: 5px;
+                }
+            }
+        }
+    }
+}
