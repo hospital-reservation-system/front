@@ -1,13 +1,5 @@
-import ProductRegister from "@/views/productRegister/ProductRegister";
-import Reservation from "@/views/reservation/Reservation";
-
 const Home = () => {
-    return (
-        <div>
-            {/* <Reservation /> */}
-            <ProductRegister />
-        </div>
-    );
+    return <div></div>;
 };
 
 export default Home;

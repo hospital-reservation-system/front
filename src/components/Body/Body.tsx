@@ -2,12 +2,12 @@
 
 import React from "react";
 import cn from "classnames/bind";
-import styles from "./Layout.module.scss";
+import styles from "./Body.module.scss";
 import Fab from "../Fab/Fab";
 
 const cx = cn.bind(styles);
 
-const Layout = () => {
+const Body = () => {
     return (
         <>
             <div className={cx("layoutWrapper")}>
@@ -19,4 +19,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default Body;
