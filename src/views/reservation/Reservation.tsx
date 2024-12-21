@@ -10,12 +10,16 @@ import BirthInput from "@/components/TextField/BirthInput/Birth";
 import PhoneInput from "@/components/TextField/PhoneInput/Phone";
 import Radio from "@/components/Radio/Radio";
 import ReservationCard from "@/components/ReservationCard/ReservationCard";
+import Body from "@/components/Body/Body";
 
 const cx = cn.bind(styles);
 
 const Reservation = () => {
     return (
         <div className={cx("reservationWrapper")}>
+            <div className={cx("background")}>
+                <Body />
+            </div>
             <section className={cx("reservationSection")}>
                 <h1 className={cx("reservationTitle")}>건강 검진 예약</h1>
                 <div className={cx("reservationContainer")}>
@@ -41,7 +45,11 @@ const Reservation = () => {
                             />
                         </div>
                         <div className={cx("reservatioInput")}>
-                            <TextInput label="예약자명" />
+                            <TextInput
+                                label="예약자명"
+                                width="423"
+                                height="48"
+                            />
                             <BirthInput />
                             <PhoneInput />
                         </div>
@@ -73,13 +81,13 @@ const Reservation = () => {
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div className={cx("reservationBtn")}>
-                        <Button
-                            label="예약하기"
-                            backgroundColor="#FFEA3C"
-                            borderColor="#BFC662"
-                        />
+                        <div className={cx("reservationBtn")}>
+                            <Button
+                                label="예약하기"
+                                backgroundColor="#FFEA3C"
+                                borderColor="#BFC662"
+                            />
+                        </div>
                     </div>
                 </div>
             </section>
