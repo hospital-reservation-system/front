@@ -27,11 +27,9 @@
   --samll: .875rem;
   --x-small: .625rem;
 
-  --main-purple: #FFEA3C;
-  --sub-purple: #FFFCE3;
+  --main-color: #FFEA3C;
+  --sub-color: #FFFCE3;
 
   --errors: #FF0045;
 
 }
-
-

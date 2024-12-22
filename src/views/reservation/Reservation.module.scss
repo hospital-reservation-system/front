@@ -5,6 +5,7 @@
     align-items: center;
     flex-direction: column;
     padding-bottom: 64px;
+    background-color: #fff;
 
     .background {
         background-color: #fffce3;
@@ -97,6 +98,7 @@
                     }
                 }
             }
+
             .reservationBtn {
                 position: absolute;
                 bottom: 20px;

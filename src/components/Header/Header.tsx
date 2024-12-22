@@ -1,32 +1,37 @@
-"use client";
-
 import React from "react";
+import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./Header.module.scss";
-import SearchBar from "../SearchBar/SearchBar";
+import headerLogo from "../../../public/images/easycare2.png";
+import TextInput from "../TextInput/TextInput";
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
 const Header = () => {
-    return (
-        <div className={cx("HeaderWrapper")}>
-            <div className={cx("logoContainer")}>
-                <img
-                    src="/images/headerLogo1.png"
-                    alt=""
-                    className={cx("logoIcon")}
-                />
-                <img
-                    src="/images/headerLogo2.png"
-                    alt=""
-                    className={cx("logoTitle")}
-                />
-            </div>
-            <div className={cx("searchBar")}>
-                <SearchBar />
-            </div>
+  return (
+    <div className={cx("HeaderWrapper")}>
+      <div className={cx("HeaderInn")}>
+        <Link href={"http://localhost:3000"}>
+          <p className={cx("imageBox")}>
+            <Image
+              src={headerLogo}
+              alt="EasyCare Logo"
+              className={cx("logoIcon")}
+            />
+          </p>
+        </Link>
+
+        <div className={cx("searchBar")}>
+          <TextInput.Input
+            type="text"
+            name="search"
+            className={cx("searchInput")}
+          />
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Header;
