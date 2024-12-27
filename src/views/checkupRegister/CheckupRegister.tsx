@@ -14,9 +14,6 @@ const CheckupRegister = () => {
     const inputSize = { width: "313px", height: "48px" };
     return (
         <div className={cx("checkupRegisterWrapper")}>
-            <div className={cx("background")}>
-                <Body />
-            </div>
             <section className={cx("checkupRegisterSection")}>
                 <h1 className={cx("checkupRegisterTitle")}>건강 검진 등록</h1>
                 <div className={cx("checkupRegisterContainer")}>

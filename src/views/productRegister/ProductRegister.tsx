@@ -5,16 +5,12 @@ import cn from "classnames/bind";
 import styles from "./ProductRegister.module.scss";
 import TextInput from "@/components/TextField/TextInput/TextInput";
 import Button from "@/components/Button/Button";
-import Body from "@/components/Body/Body";
 
 const cx = cn.bind(styles);
 
 const productRegister = () => {
     return (
         <div className={cx("productRegisterWrapper")}>
-            <div className={cx("background")}>
-                <Body />
-            </div>
             <section className={cx("productRegisterSection")}>
                 <h1 className={cx("productRegisterTitle")}>
                     건강 검진 상품 등록
