@@ -37,11 +37,11 @@ const ProductRegister = () => {
     const inputSize = { width: "100%", height: "48px" };
 
     const onSubmit: SubmitHandler<FormData> = (data) => {
-        alert(JSON.stringify(data));
+        console.log(data);
     };
 
     return (
-        <div
+        <form
             className={cx("productRegisterWrapper")}
             onSubmit={handleSubmit(onSubmit)}
         >
@@ -68,17 +68,30 @@ const ProductRegister = () => {
                         <TextInput
                             label="상품 설명"
                             {...inputSize}
-                            {...register("productDetail")}
+                            {...register("productDetail", {
+                                required: "상품 설명을 입력해주세요",
+                            })}
                         />
+                        {errors.productDetail && (
+                            <span className={cx("errorMessage")}>
+                                {errors.productDetail?.message}
+                            </span>
+                        )}
                     </div>
                     <div className={cx("productRegisterInput")}>
                         <TextInput
                             label="상품 가격"
                             {...inputSize}
-                            {...register("productPrice")}
+                            {...register("productPrice", {
+                                required: "상품 가격을 입력해주세요",
+                            })}
                         />
+                        {errors.productPrice && (
+                            <span className={cx("errorMessage")}>
+                                {errors.productPrice?.message}
+                            </span>
+                        )}
                     </div>
-
                     <div className={cx("productSelectContainer")}>
                         <p className={cx("productSelectTitle")}>선택 검사</p>
                         <div className={cx("productSelect")}>
@@ -87,12 +100,19 @@ const ProductRegister = () => {
                                     <input
                                         type="checkbox"
                                         value={option}
-                                        {...register("options")}
+                                        {...register("options", {
+                                            required: "항목을 선택해주세요",
+                                        })}
                                     />
                                     {option}
                                 </label>
                             ))}
                         </div>
+                        {errors.options && (
+                            <span className={cx("errorMessage")}>
+                                {errors.options?.message}
+                            </span>
+                        )}
                     </div>
                     <div className={cx("registerBtn")}>
                         <Button
@@ -100,11 +120,12 @@ const ProductRegister = () => {
                             backgroundColor="#FFEA3C"
                             borderColor="#BFC662"
                             disabled={isSubmitting}
+                            type="submit"
                         />
                     </div>
                 </div>
             </section>
-        </div>
+        </form>
     );
 };
 
