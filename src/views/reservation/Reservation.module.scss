@@ -1,17 +1,11 @@
 .reservationWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    margin: 0 auto;
     padding-bottom: 64px;
-    background-color: #fff;
 
     .reservationSection {
-        width: 1080px;
+        max-width: 1080px;
 
         .reservationTitle {
-            background-color: #fffce3;
             font-size: 60px;
             font-weight: 700;
             line-height: 50px;
@@ -20,84 +14,94 @@
         }
 
         .reservationContainer {
-            height: 1358px;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             padding: 48px 12px;
+            background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             border-radius: 24px;
-            position: relative;
 
-            .calander {
-                height: 1100px;
-                padding: 24px 48px;
-                border-right: 2px solid #eeeeee;
-            }
+            .reservationForm {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
 
-            .reservationInfo {
-                padding: 24px 48px;
-
-                .reservationUser {
-                    font-size: 24px;
-                    padding-bottom: 24px;
+                @media (max-width: 1080px) {
+                    grid-template-columns: 1fr;
                 }
 
-                .reservationDetail {
-                    font-weight: 400;
-                    line-height: 22px;
-                    padding-bottom: 24px;
+                .calander {
+                    height: 1100px;
+                    padding: 24px 48px;
+                    border-right: 2px solid #eeeeee;
+
+                    @media (max-width: 1080px) {
+                        border-right: none;
+                        padding-bottom: 50px;
+                    }
                 }
 
-                .reservatioBtn {
-                    display: flex;
-                    justify-content: space-between;
-                    padding-bottom: 64px;
-                }
+                .reservationInfo {
+                    padding: 24px 48px;
 
-                .reservatioInput {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 24px;
-                    padding-bottom: 64px;
-                }
-
-                .checkupContainer {
-                    height: 273px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-
-                    .checkupContent {
+                    .reservationUser {
                         font-size: 24px;
-                        line-height: 40px;
-                        padding-bottom: 30px;
+                        padding-bottom: 24px;
                     }
 
-                    .requiredSymbol {
-                        color: red;
-                        font-size: 16px;
-                        margin-left: 4px;
+                    .reservationDetail {
+                        font-weight: 400;
+                        line-height: 22px;
+                        padding-bottom: 24px;
                     }
 
-                    .radioContainer {
+                    .reservatioBtn {
+                        display: flex;
+                        justify-content: space-between;
+                        padding-bottom: 64px;
+                    }
+
+                    .reservatioInput {
                         display: flex;
                         flex-direction: column;
-                        gap: 10px;
+                        gap: 24px;
+                        padding-bottom: 64px;
                     }
 
-                    .reservationCard {
+                    .checkupContainer {
                         display: flex;
-                        flex-direction: row;
-                        gap: 12px;
+                        flex-direction: column;
+                        gap: 24px;
+
+                        .checkupContent {
+                            font-size: 24px;
+                            line-height: 40px;
+                        }
+
+                        .requiredSymbol {
+                            color: red;
+                            font-size: 16px;
+                            margin-left: 4px;
+                        }
+
+                        .radioContainer {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                        }
+
+                        .reservationCard {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 12px;
+                        }
                     }
                 }
             }
-
             .reservationBtn {
-                position: absolute;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
+                display: flex;
+                justify-content: center;
+                padding-top: 50px;
             }
         }
     }

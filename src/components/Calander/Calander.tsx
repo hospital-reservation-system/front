@@ -34,21 +34,22 @@ const Calander = () => {
                     mode="single"
                     styles={{
                         weekday: {
-                            fontSize: "11px",
+                            fontSize: "16px",
                             textAlign: "center",
                             lineHeight: "13px",
                         },
                         day: { fontSize: "16px" },
-                        // day_button: {
-                        //     backgroundColor: "black",
-                        //     color: "white",
-                        // },
+                        day_button: {
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        },
                         nav: { display: "none" },
                         month_caption: {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            margin: "0 auto",
+
                             paddingBottom: "28px",
                             fontSize: "18px",
                             fontWeight: "400",
