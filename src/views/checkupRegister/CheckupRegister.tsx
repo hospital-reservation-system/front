@@ -6,17 +6,25 @@ import styles from "./CheckupRegister.module.scss";
 import Button from "@/components/Button/Button";
 import TextInput from "@/components/TextField/TextInput/TextInput";
 import Radio from "@/components/Radio/Radio";
-import Body from "@/components/Body/Body";
 
 const cx = cn.bind(styles);
 
 const CheckupRegister = () => {
-    const inputSize = { width: "313px", height: "48px" };
+    /** 선택검사 병원 목록 */
+    const hospitalLabels = [
+        "강남 세브란스병원 헬스체크업센터",
+        "하나로의료재단 종합센터",
+        "하나로의료재단 강남센터",
+        "광동병원 통합웰니스센터",
+        "군포 지샘병원 건강검진센터",
+        "창원 서울패밀리병원 AI건강증진센터",
+    ];
+
+    /** TextInput창 크기 */
+    const inputSize = { width: "100%", height: "48px" };
+
     return (
         <div className={cx("checkupRegisterWrapper")}>
-            <div className={cx("background")}>
-                <Body />
-            </div>
             <section className={cx("checkupRegisterSection")}>
                 <h1 className={cx("checkupRegisterTitle")}>건강 검진 등록</h1>
                 <div className={cx("checkupRegisterContainer")}>
@@ -95,14 +103,18 @@ const CheckupRegister = () => {
                                 readOnly
                             />
                             <TextInput label="이메일" {...inputSize} />
-                            <TextInput
-                                label="주 소"
-                                {...inputSize}
-                                requiredSymbol="*"
-                                readOnly
-                            />
+                            <div className={cx("addressWrapper")}>
+                                <TextInput
+                                    label="주 소"
+                                    {...inputSize}
+                                    requiredSymbol="*"
+                                    readOnly
+                                />
+                                <button className={cx("addressBtn")}>
+                                    검색
+                                </button>
+                            </div>
                         </div>
-                        <button className={cx("addressBtn")}>검색</button>
                     </div>
                     <div className={cx("optionItem")}>
                         <p className={cx("optionItemInfo")}>
@@ -125,36 +137,14 @@ const CheckupRegister = () => {
                                 </p>
                             </div>
                             <div className={cx("checkCategory")}>
-                                <Radio
-                                    label="강남 세브란스병원 헬스체크업센터"
-                                    name="type"
-                                    value="hospital"
-                                />
-                                <Radio
-                                    label="하나로의료재단 종합센터"
-                                    name="type"
-                                    value="hospital"
-                                />
-                                <Radio
-                                    label="하나로의료재단 강남센터"
-                                    name="type"
-                                    value="hospital"
-                                />
-                                <Radio
-                                    label="광동병원 통합웰니스센터"
-                                    name="type"
-                                    value="hospital"
-                                />
-                                <Radio
-                                    label="군포 지샘병원 건강검진센터"
-                                    name="type"
-                                    value="hospital"
-                                />
-                                <Radio
-                                    label="창원 서울패밀리병원 AI건강증진센터"
-                                    name="type"
-                                    value="hospital"
-                                />
+                                {hospitalLabels.map((label, index) => (
+                                    <Radio
+                                        key={index}
+                                        label={label}
+                                        name="type"
+                                        value="hospital"
+                                    />
+                                ))}
                             </div>
                         </div>
                         <h1 className={cx("comment")}>비고</h1>

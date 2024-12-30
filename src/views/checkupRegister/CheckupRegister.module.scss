@@ -1,22 +1,10 @@
 .checkupRegisterWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .background {
-        background-color: #fffce3;
-        width: 100%;
-        height: 433px;
-        // position: relative;
-    }
+    margin: 0 auto;
+    padding-bottom: 80px;
 
     .checkupRegisterSection {
-        width: 1180px;
-        padding-bottom: 80px;
-        // position: absolute;
-
-        z-index: 10;
+        max-width: 1080px;
+        padding: 0 16px;
 
         .checkupRegisterTitle {
             font-size: 60px;
@@ -24,15 +12,16 @@
             line-height: 50px;
             text-align: center;
             padding-bottom: 64px;
+
+            @media (max-width: 550px) {
+                font-size: 40px;
+            }
         }
 
         .checkupRegisterContainer {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             background-color: #ffffff;
-            padding: 48px 12px;
+            padding: 48px 64px;
+            margin: 0 auto;
             border-radius: 24px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
@@ -45,7 +34,7 @@
                 .hospitaltextInput {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
-                    grid-gap: 24px;
+                    gap: 50px 100px;
                 }
 
                 .reservationInfo {
@@ -58,17 +47,14 @@
             }
             .reserverInfo {
                 padding-bottom: 80px;
-                position: relative;
 
                 .reserverTextInput {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
-                    grid-gap: 24px;
+                    gap: 50px 100px;
                 }
                 .addressBtn {
-                    position: absolute;
-                    bottom: 80px;
-                    left: 330px;
+                    margin-top: 10px;
                     width: 81px;
                     height: 48px;
                     background-color: #ffea3c;
@@ -86,13 +72,14 @@
                         padding-top: 16px;
                         font-weight: 300;
                     }
+
                     .selectTIimeInput p {
                         font-size: 30px;
                         font-weight: 300;
                     }
 
                     .selectTIimeInput input {
-                        width: 60px;
+                        max-width: 60px;
                         height: 48px;
                         border: 1px solid #dddddd;
                     }
@@ -100,11 +87,13 @@
 
                 .selectGender {
                     padding: 24px 0;
+
                     .requiredSymbol {
                         color: red;
                         font-size: 16px;
                         margin-left: 4px;
                     }
+
                     .selectGenderInput {
                         display: flex;
                         flex-direction: row;
@@ -127,16 +116,27 @@
                 .selectCheck {
                     display: flex;
                     flex-direction: row;
+                    align-items: center;
                     gap: 30px;
                     padding-top: 40px;
+                    width: 100%;
+                    justify-content: space-between;
 
                     .selectCheckTitle {
+                        white-space: nowrap;
                         font-size: 16px;
                         font-weight: 500;
+                        flex: 1;
                     }
 
                     .selectCheckSubTitle {
                         color: #999999;
+                    }
+
+                    @media (max-width: 768px) {
+                        flex-direction: column;
+                        gap: 15px;
+                        padding-top: 20px;
                     }
                 }
 
@@ -145,11 +145,11 @@
                     border-radius: 20px;
                     background-color: #f2f2f2;
                     padding: 13px;
-                    width: 904px;
-                    height: 80px;
+                    max-width: 904px;
+                    width: 100%;
+                    height: auto;
                     display: flex;
                     flex-direction: row;
-                    white-space: nowrap;
                     flex-wrap: wrap;
                     gap: 13px;
                 }
@@ -165,22 +165,29 @@
                 }
 
                 .commentInput {
-                    width: 996px;
+                    width: 100%;
                     height: 48px;
                     border: 1px solid #dddddd;
+                    padding: 10px;
                 }
             }
             .agreement {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 0 auto;
+                align-items: center;
                 padding-bottom: 80px;
 
                 .priceContainer {
                     padding-bottom: 50px;
+
                     .price {
                         display: flex;
                         justify-content: space-around;
                         align-items: center;
                         padding: 20px;
-                        width: 485px;
+                        width: 425px;
                         height: 75px;
                         border: 1px solid #dddddd;
                         border-radius: 40px;
@@ -198,6 +205,10 @@
                 .privacyPolicy p {
                     padding-bottom: 5px;
                 }
+            }
+            .registerBtn {
+                display: flex;
+                justify-content: center;
             }
         }
     }

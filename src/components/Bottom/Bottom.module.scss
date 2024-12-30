@@ -1,13 +1,13 @@
 .bottomWrapper {
+    height: 178px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
     z-index: 1;
-    // max-width: 1920px;
-    width: 100%;
     background-color: #4c4c4c;
     border-radius: 50px 50px 0 0;
+    padding: 16px 64px;
 
     .logoContainer {
         display: flex;
