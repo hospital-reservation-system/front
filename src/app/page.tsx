@@ -1,11 +1,11 @@
 import Reservation from "@/views/reservation/Reservation";
 
 const Home = () => {
-    return (
-        <div>
-            <Reservation />
-        </div>
-    );
+  return (
+    <div>
+      <Reservation></Reservation>
+    </div>
+  );
 };
 
 export default Home;

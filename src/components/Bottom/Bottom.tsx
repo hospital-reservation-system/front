@@ -11,12 +11,7 @@ const Bottom = () => {
         <div className={cx("bottomWrapper")}>
             <div className={cx("logoContainer")}>
                 <img
-                    src="/images/bottomLogo1.png"
-                    alt=""
-                    className={cx("logoIcon")}
-                />
-                <img
-                    src="/images/bottomLogo2.png"
+                    src="/images/bottomLogo.png"
                     alt=""
                     className={cx("logoTitle")}
                 />

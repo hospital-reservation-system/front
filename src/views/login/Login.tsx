@@ -2,7 +2,7 @@
 import styles from './Login.module.scss';
 import cn from 'classnames/bind';
 import { useForm } from "react-hook-form";
-import TextInput from "@/components/TextField/CommonInput/TextInput";
+import TextInput from "@/components/TextField/TextInput/TextInput";
 import Button from "@/components/Button/Button";
 import Link from 'next/link';
 

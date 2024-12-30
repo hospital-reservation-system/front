@@ -1,12 +1,16 @@
 .HeaderWrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex: 1;
+    width: 100%;
     max-width: 1920px;
-    height: 100px;
-    min-height: 80px;
-    padding: 11px 48px;
     background-color: #fffce3;
+    padding: 18px 64px;
+
+    .HeaderInn {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        align-items: center;
+    }
 
     .logoContainer {
         display: flex;

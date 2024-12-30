@@ -10,22 +10,22 @@ import "../style/globals.css";
 const cx = cn.bind(styles);
 
 export const metadata: Metadata = {
-    title: "Hospital",
-    description: "side project",
+  title: "Hospital",
+  description: "side project",
 };
 
 export default function RootLayout(props: React.PropsWithChildren) {
-    const { children } = props;
+  const { children } = props;
 
-    return (
-        <html lang="ko">
-            <body>
-                <div className={cx("hospitalWrap")}>
-                    <Header />
-                    <div className={cx("hospitalInn")}>{children}</div>
-                    <Bottom />
-                </div>
-            </body>
-        </html>
-    );
+  return (
+    <html lang="ko">
+      <body>
+        <div className={cx("hospitalWrap")}>
+          <Header />
+          <div className={cx("hospitalInn")}>{children}</div>
+          <Bottom />
+        </div>
+      </body>
+    </html>
+  );
 }

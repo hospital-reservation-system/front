@@ -5,7 +5,7 @@ import cn from "classnames/bind";
 import styles from "./Reservation.module.scss";
 import Calander from "@/components/Calander/Calander";
 import Button from "@/components/Button/Button";
-import TextInput from "@/components/TextField/CommonInput/TextInput";
+import TextInput from "@/components/TextField/TextInput/TextInput";
 import BirthInput from "@/components/TextField/BirthInput/Birth";
 import PhoneInput from "@/components/TextField/PhoneInput/Phone";
 import Radio from "@/components/Radio/Radio";
