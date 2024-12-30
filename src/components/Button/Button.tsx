@@ -9,6 +9,7 @@ type BtnProps = {
     onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     backgroundColor: "#FFEA3C" | "#FFFFFF";
     borderColor: "#BFC662" | "#CCCCCC";
+    disabled?: boolean;
 };
 
 const Button = (props: BtnProps) => {
