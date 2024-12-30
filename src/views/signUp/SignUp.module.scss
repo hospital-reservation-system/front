@@ -1,0 +1,87 @@
+.signup_wrap {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    
+}
+
+.tit{font-size:40px; font-weight: bold; text-align: center; padding-bottom:60px;}
+
+.signup_form {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    .form_row {
+        margin-bottom: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .address_section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+
+        .address_label {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .zipcode_group {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+
+            input {
+                flex: 1;
+            }
+
+            .search_btn {
+                height: 40px;
+                padding: 0 16px;
+                font-size: 14px;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .submit_btn_wrap {
+        margin-top: 30px;
+        
+        .submit_btn {
+            width: 100%;
+            height: 48px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+}
+
+// 모바일 대응
+@media screen and (max-width: 768px) {
+    .signup_form {
+        .address_section {
+            .zipcode_group {
+                flex-direction: column;
+
+                .search_btn {
+                    width: 100%;
+                }
+            }
+
+            .agreement_wrap {
+                .verify_btn {
+                    position: relative;
+                    right: auto;
+                    margin-top: 8px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

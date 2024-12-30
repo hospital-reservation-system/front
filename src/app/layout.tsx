@@ -1,19 +1,9 @@
-import type { Metadata } from "next";
-import "@/style/globals.css";
+import RootLayout from "@/layouts/Root.layout";
 
-export const metadata: Metadata = {
-  title: "Hospital",
-  description: "side project",
+const HospitalRootLayout = async (props: React.PropsWithChildren) => {
+  const { children } = props;
+
+  return <RootLayout>{children}</RootLayout>;
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="ko">
-      <body>{children}</body>
-    </html>
-  );
-}
+export default HospitalRootLayout;

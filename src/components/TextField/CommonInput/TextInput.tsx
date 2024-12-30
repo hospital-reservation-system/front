@@ -1,20 +1,38 @@
 "use client";
 
-import React from "react";
+import React, { forwardRef } from "react";
 import cn from "classnames/bind";
 import styles from "./TextInput.module.scss";
 
 const cx = cn.bind(styles);
 
 type TextInputProps = {
-    label: string;
+    label?: string;
+    type?: 'text' | 'password' | 'email' | 'number';
+    placeholder?: string;
     requiredSymbol?: React.ReactNode;
     width?: string | number;
     height?: string | number;
-};
+    error?: string;
+    disabled?: boolean;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'width' | 'height'>;
 
-const TextInput = (props: TextInputProps) => {
-    const { label, requiredSymbol, width, height } = props;
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+    const {
+        label,
+        type = 'text',
+        placeholder,
+        requiredSymbol,
+        width,
+        height,
+        error,
+        disabled,
+        onChange,
+        onBlur,
+        ...rest
+    } = props;
 
     return (
         <div className={cx("inputWrapper")}>
@@ -27,15 +45,24 @@ const TextInput = (props: TextInputProps) => {
                 )}
             </div>
             <input
-                type="text"
-                className={cx("inputContent")}
+                ref={ref}
+                type={type}
+                className={cx("inputContent", { error: !!error, disabled })}
+                placeholder={placeholder}
+                disabled={disabled}
                 style={{
                     width: typeof width === "number" ? `${width}px` : width,
                     height: typeof height === "number" ? `${height}px` : height,
                 }}
+                onChange={onChange}
+                onBlur={onBlur}
+                {...rest}
             />
+            {error && <p className={cx("errorMessage")}>{error}</p>}
         </div>
     );
-};
+});
+
+TextInput.displayName = 'TextInput';
 
 export default TextInput;
