@@ -3,7 +3,7 @@
     padding-bottom: 64px;
 
     .hospitalListSection {
-        width: 1080px;
+        max-width: 1080px;
         padding: 0 16px;
 
         .hospitalListTitle {
@@ -19,6 +19,7 @@
         }
 
         .hospitalListContainer {
+            width: 100%;
             background-color: #ffffff;
             overflow: hidden;
             margin: 0 auto;
@@ -27,10 +28,12 @@
 
             .searchContainer {
                 display: flex;
+                justify-content: center;
                 align-items: center;
                 gap: 12px;
-                height: 131px;
+                height: auto;
                 padding: 48px;
+                flex-wrap: wrap;
                 background-color: #fff7b6;
 
                 .citySelect {
@@ -42,11 +45,19 @@
                 }
 
                 .districtSelect {
+                    display: flex;
                     background-color: #ffffff;
                     width: 200px;
                     height: 35px;
                     border-radius: 12px;
                     border: 1px solid #cccccc;
+                }
+
+                .searchBar {
+                    // display: flex;
+                    max-width: 585px;
+                    width: 100%;
+                    height: 35px;
                 }
             }
         }
@@ -56,6 +67,11 @@
         }
 
         .hospital {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
             padding-bottom: 64px;
 
             .reservationDetail {
@@ -75,6 +91,19 @@
             .hospitlaBtn {
                 display: flex;
                 gap: 14px;
+                flex: 1;
+            }
+
+            .hospitalInfo {
+                flex: 1;
+                min-width: 200px;
+            }
+
+            @media (max-width: 1070px) {
+                .hospitlaBtn {
+                    flex-direction: column;
+                    gap: 10px;
+                }
             }
         }
     }

@@ -28,21 +28,28 @@ const hospitalList = () => {
                             <option value="Seocho">서초구</option>
                             <option value="Jung">중구</option>
                         </select>
-                        <SearchBar
-                            width="585px"
-                            height="35px"
-                            placeholder="병원명을 입력하세요."
-                        />
+                        <div className={cx("searchBar")}>
+                            <SearchBar
+                                width="100%"
+                                height="35px"
+                                placeholder="병원명을 입력하세요."
+                            />
+                        </div>
                     </div>
                     <div className={cx("listContainer")}>
                         <div className={cx("hospital")}>
-                            <p className={cx("reservationDetail")}>
-                                일주일 이후 예약 가능
-                            </p>
-                            <h1 className={cx("hospitalName")}>일산복음병원</h1>
-                            <p className={cx("hospitalLocation")}>
-                                경기도 고양시 일산동구 고양대로 760(중산동)
-                            </p>
+                            <div className={cx("hospitalInfo")}>
+                                <p className={cx("reservationDetail")}>
+                                    일주일 이후 예약 가능
+                                </p>
+                                <h1 className={cx("hospitalName")}>
+                                    일산복음병원
+                                </h1>
+                                <p className={cx("hospitalLocation")}>
+                                    경기도 고양시 일산동구 고양대로 760(중산동)
+                                </p>
+                            </div>
+
                             <div className={cx("hospitlaBtn")}>
                                 <Button
                                     label="상품보기"
