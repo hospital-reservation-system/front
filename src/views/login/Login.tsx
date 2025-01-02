@@ -1,28 +1,28 @@
-'use client';
-import styles from './Login.module.scss';
-import cn from 'classnames/bind';
+"use client";
+import styles from "./Login.module.scss";
+import cn from "classnames/bind";
 import { useForm } from "react-hook-form";
 import TextInput from "@/components/TextField/TextInput/TextInput";
 import Button from "@/components/Button/Button";
-import Link from 'next/link';
+import Link from "next/link";
 
 const cx = cn.bind(styles);
 
 type LoginFormType = {
     id: string;
     password: string;
-}
+};
 
 const LoginView = () => {
-    const { 
-        register, 
+    const {
+        register,
         handleSubmit,
-        formState: { errors }
+        formState: { errors },
     } = useForm<LoginFormType>({
         defaultValues: {
-            id: '',
-            password: ''
-        }
+            id: "",
+            password: "",
+        },
     });
 
     const onSubmit = (data: LoginFormType) => {
@@ -33,7 +33,10 @@ const LoginView = () => {
     return (
         <div className={cx("login_wrap")}>
             <h1 className={cx("tit")}>로그인</h1>
-            <form className={cx("login_form")} onSubmit={handleSubmit(onSubmit)}>
+            <form
+                className={cx("login_form")}
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <div className={cx("input_group")}>
                     <TextInput
                         label="아이디"
@@ -41,10 +44,15 @@ const LoginView = () => {
                             required: "아이디를 입력해주세요",
                             minLength: {
                                 value: 4,
-                                message: "아이디는 4자 이상이어야 합니다"
-                            }
+                                message: "아이디는 4자 이상이어야 합니다",
+                            },
                         })}
                     />
+                    {errors.id && (
+                        <span className={cx("errorMessage")}>
+                            {errors.id?.message}
+                        </span>
+                    )}
                 </div>
 
                 <div className={cx("input_group")}>
@@ -55,12 +63,20 @@ const LoginView = () => {
                             required: "비밀번호를 입력해주세요",
                             minLength: {
                                 value: 6,
-                                message: "비밀번호는 6자 이상이어야 합니다"
-                            }
+                                message: "비밀번호는 6자 이상이어야 합니다",
+                            },
                         })}
                     />
+                    {errors.password && (
+                        <span className={cx("errorMessage")}>
+                            {errors.password?.message}
+                        </span>
+                    )}
                     <div className={cx("password_help")}>
-                        <Link href="/forgot-password" className={cx("forgot_password")}>
+                        <Link
+                            href="/forgot-password"
+                            className={cx("forgot_password")}
+                        >
                             비밀번호를 잊으셨나요?
                         </Link>
                     </div>
@@ -74,7 +90,7 @@ const LoginView = () => {
                         borderColor="#BFC662"
                         className={cx("login_button")}
                     />
-                    <Link href="#">
+                    <Link href="signup">
                         <Button
                             label="회원가입"
                             backgroundColor="#FFFFFF"
