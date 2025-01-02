@@ -25,14 +25,14 @@ const Fab = () => {
                 />
                 <span>예약조회</span>
             </div>
-            <div className={cx("fabButton")}>
+            {/* <div className={cx("fabButton")}>
                 <img
                     src="/images/share.png"
                     alt="공유하기"
                     className={cx("share")}
                 />
                 <span>공유하기</span>
-            </div>
+            </div> */}
             <div className={cx("fabButton")}>
                 <img
                     src="/images/location.png"

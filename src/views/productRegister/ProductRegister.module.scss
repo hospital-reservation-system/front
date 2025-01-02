@@ -17,6 +17,7 @@
                 font-size: 40px;
             }
         }
+
         .productRegisterContainer {
             background-color: #ffffff;
             padding: 48px 64px;
@@ -79,6 +80,10 @@
                 display: flex;
                 justify-content: center;
             }
+        }
+        .errorMessage {
+            color: #ff0000;
+            padding-top: 50px;
         }
     }
 }

@@ -6,10 +6,25 @@ import cn from "classnames/bind";
 
 const cx = cn.bind(styles);
 
-const searchbar = () => {
+type SearchBarProps = {
+    width?: string | number;
+    height?: string | number;
+    placeholder?: string;
+};
+
+const searchbar = (props: SearchBarProps) => {
+    const { width, height, placeholder } = props;
     return (
         <div className={cx("searchBarWrapper")}>
-            <input type="text" className={cx("searchInput")} />
+            <input
+                type="text"
+                className={cx("searchInput")}
+                style={{
+                    width: typeof width === "number" ? `${width}px` : width,
+                    height: typeof height === "number" ? `${height}px` : height,
+                }}
+                placeholder={placeholder}
+            />
             <button className={cx("searchBtn")}>검색</button>
         </div>
     );

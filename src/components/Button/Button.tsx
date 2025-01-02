@@ -8,33 +8,39 @@ type BtnProps = {
     label: string;
     type?: "button" | "submit" | "reset";
     onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-    backgroundColor: "#FFEA3C" | "#FFFFFF";
+    backgroundColor: "#FFEA3C" | "#FFFFFF" | "#FFFCE5";
     borderColor: "#BFC662" | "#CCCCCC";
     className?: string;
     disabled?: boolean;
+    width?: string | number;
+    height?: string | number;
 };
 
 const Button = (props: BtnProps) => {
-    const { 
-        label, 
-        type = "button", 
-        onClick, 
-        backgroundColor, 
+    const {
+        label,
+        type = "button",
+        onClick,
+        backgroundColor,
         borderColor,
         className,
-        disabled
+        disabled,
+        width,
+        height,
     } = props;
 
-    const buttonStyle = {
+    const buttonStyle: React.CSSProperties = {
         backgroundColor,
         border: `1px solid ${borderColor}`,
+        width: typeof width === "number" ? `${width}px` : width,
+        height: typeof height === "number" ? `${height}px` : height,
     };
 
     return (
-        <button 
+        <button
             type={type}
-            className={cx("btn", className)} 
-            onClick={onClick} 
+            className={cx("btn", className)}
+            onClick={onClick}
             style={buttonStyle}
             disabled={disabled}
         >
