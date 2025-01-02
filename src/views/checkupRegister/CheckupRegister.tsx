@@ -28,6 +28,7 @@ const CheckupRegister = () => {
         gender: "male" | "female";
         consentOption: "";
     };
+
     const {
         register,
         handleSubmit,
@@ -44,13 +45,13 @@ const CheckupRegister = () => {
     };
 
     return (
-        <form
+        <div
             className={cx("checkupRegisterWrapper")}
             onSubmit={handleSubmit(onSubmit)}
         >
             <section className={cx("checkupRegisterSection")}>
                 <h1 className={cx("checkupRegisterTitle")}>건강 검진 등록</h1>
-                <div className={cx("checkupRegisterContainer")}>
+                <form className={cx("checkupRegisterContainer")}>
                     <div className={cx("selectHospital")}>
                         <div className={cx("hospitaltextInput")}>
                             <TextInput
@@ -236,7 +237,7 @@ const CheckupRegister = () => {
                                         required: "항목에 동의해주세요",
                                     })}
                                     onChange={handleRadioChange}
-                                />{" "}
+                                />
                                 {errors.consentOption && (
                                     <span className={cx("errorMessage")}>
                                         {errors.consentOption?.message}
@@ -273,9 +274,9 @@ const CheckupRegister = () => {
                             type="submit"
                         />
                     </div>
-                </div>
+                </form>
             </section>
-        </form>
+        </div>
     );
 };
 

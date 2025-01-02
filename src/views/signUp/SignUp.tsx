@@ -178,7 +178,6 @@ const SignupView = () => {
                     )}
                 </div>
                 <div className={cx("phone")}>
-                    {" "}
                     <TextInput
                         label="휴대전화"
                         width="100%"
