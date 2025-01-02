@@ -4,12 +4,33 @@ import React from "react";
 import cn from "classnames/bind";
 import styles from "./hospitalList.module.scss";
 
-import SearchBar from "@/components/SearchBar/SearchBar";
 import Button from "@/components/Button/Button";
 
 const cx = cn.bind(styles);
 
-const hospitalList = () => {
+// 병원 데이터
+const hospitals = [
+    {
+        id: 1,
+        reservationDetail: "일주일 이후 예약 가능",
+        name: "일산복음병원",
+        location: "경기도 고양시 일산동구 고양대로 760(중산동)",
+    },
+    {
+        id: 2,
+        reservationDetail: "일주일 이후 예약 가능",
+        name: "일산복음병원",
+        location: "경기도 고양시 일산동구 고양대로 760(중산동)",
+    },
+    {
+        id: 3,
+        reservationDetail: "일주일 이후 예약 가능",
+        name: "일산복음병원",
+        location: "경기도 고양시 일산동구 고양대로 760(중산동)",
+    },
+];
+
+const HospitalList = () => {
     return (
         <div className={cx("hospitalListWrapper")}>
             <section className={cx("hospitalListSection")}>
@@ -29,51 +50,53 @@ const hospitalList = () => {
                             <option value="Jung">중구</option>
                         </select>
                         <div className={cx("searchBar")}>
-                            <SearchBar
-                                width="100%"
-                                height="35px"
-                                placeholder="병원명을 입력하세요."
+                            <input
+                                type="text"
+                                placeholder="병원명을 입력하세요"
                             />
+                            <button>검색</button>
                         </div>
                     </div>
                     <div className={cx("listContainer")}>
-                        <div className={cx("hospital")}>
-                            <div className={cx("hospitalInfo")}>
-                                <p className={cx("reservationDetail")}>
-                                    일주일 이후 예약 가능
-                                </p>
-                                <h1 className={cx("hospitalName")}>
-                                    일산복음병원
-                                </h1>
-                                <p className={cx("hospitalLocation")}>
-                                    경기도 고양시 일산동구 고양대로 760(중산동)
-                                </p>
-                            </div>
+                        {hospitals.map((hospital) => (
+                            <div key={hospital.id} className={cx("hospital")}>
+                                <div className={cx("hospitalInfo")}>
+                                    <p className={cx("reservationDetail")}>
+                                        {hospital.reservationDetail}
+                                    </p>
+                                    <h1 className={cx("hospitalName")}>
+                                        {hospital.name}
+                                    </h1>
+                                    <p className={cx("hospitalLocation")}>
+                                        {hospital.location}
+                                    </p>
+                                </div>
 
-                            <div className={cx("hospitlaBtn")}>
-                                <Button
-                                    label="상품보기"
-                                    backgroundColor="#FFFCE5"
-                                    borderColor="#BFC662"
-                                    width="302px"
-                                    height="54px"
-                                />
-                                <Button
-                                    label="지도보기"
-                                    backgroundColor="#FFFFFF"
-                                    borderColor="#CCCCCC"
-                                    width="302px"
-                                    height="54px"
-                                />
-                                <Button
-                                    label="예약하기"
-                                    backgroundColor="#FFFCE5"
-                                    borderColor="#BFC662"
-                                    width="302px"
-                                    height="54px"
-                                />
+                                <div className={cx("hospitalBtn")}>
+                                    <Button
+                                        label="상품보기"
+                                        backgroundColor="#FFFCE5"
+                                        borderColor="#BFC662"
+                                        width="302px"
+                                        height="54px"
+                                    />
+                                    <Button
+                                        label="지도보기"
+                                        backgroundColor="#FFFFFF"
+                                        borderColor="#CCCCCC"
+                                        width="302px"
+                                        height="54px"
+                                    />
+                                    <Button
+                                        label="예약하기"
+                                        backgroundColor="#FFFCE5"
+                                        borderColor="#BFC662"
+                                        width="302px"
+                                        height="54px"
+                                    />
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -81,4 +104,4 @@ const hospitalList = () => {
     );
 };
 
-export default hospitalList;
+export default HospitalList;
