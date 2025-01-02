@@ -16,7 +16,7 @@ type TextInputProps = {
     error?: string;
     disabled?: boolean;
     readOnly?: boolean;
-    name: string;
+    name?: string;
     inputRef?: React.Ref<HTMLInputElement>;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;

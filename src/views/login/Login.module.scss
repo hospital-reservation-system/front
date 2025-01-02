@@ -7,7 +7,12 @@
     padding: 20px;
 }
 
-.tit{font-size:40px; font-weight: bold; text-align: center; padding-bottom:60px;}
+.tit {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 60px;
+}
 
 .login_form {
     width: 100%;
@@ -15,7 +20,7 @@
     padding: 30px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
     .input_group {
         margin-bottom: 20px;
@@ -52,5 +57,9 @@
             font-size: 16px;
             font-weight: 500;
         }
+    }
+    .errorMessage {
+        font-size: 13px;
+        color: #ff0000;
     }
 }

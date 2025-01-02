@@ -41,7 +41,7 @@ const ProductRegister = () => {
     };
 
     return (
-        <form
+        <div
             className={cx("productRegisterWrapper")}
             onSubmit={handleSubmit(onSubmit)}
         >
@@ -49,7 +49,7 @@ const ProductRegister = () => {
                 <h1 className={cx("productRegisterTitle")}>
                     건강 검진 상품 등록
                 </h1>
-                <div className={cx("productRegisterContainer")}>
+                <form className={cx("productRegisterContainer")}>
                     <div className={cx("productRegisterInput")}>
                         <TextInput
                             label="상품 이름"
@@ -123,9 +123,9 @@ const ProductRegister = () => {
                             type="submit"
                         />
                     </div>
-                </div>
+                </form>
             </section>
-        </form>
+        </div>
     );
 };
 

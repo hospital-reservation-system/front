@@ -10,6 +10,7 @@ import BirthInput from "@/components/TextField/BirthInput/Birth";
 import PhoneInput from "@/components/TextField/PhoneInput/Phone";
 import Radio from "@/components/Radio/Radio";
 import ReservationCard from "@/components/ReservationCard/ReservationCard";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 const cx = cn.bind(styles);
 
@@ -17,11 +18,34 @@ const Reservation = () => {
     /** TextInput창 크기 */
     const inputSize = { width: "100%", height: "48px" };
 
+    type FormData = {
+        name: string;
+        birth: string | number;
+        phone: number;
+        reserveType: "combined" | "public";
+    };
+
+    const {
+        register,
+        handleSubmit,
+        formState: { isSubmitting, errors },
+        clearErrors,
+    } = useForm<FormData>();
+
+    const onSubmit: SubmitHandler<FormData> = (data) => {
+        console.log(data);
+    };
+    const handleRadioChange = () => {
+        clearErrors("reserveType");
+    };
     return (
         <div className={cx("reservationWrapper")}>
             <section className={cx("reservationSection")}>
                 <h1 className={cx("reservationTitle")}>건강 검진 예약</h1>
-                <div className={cx("reservationContainer")}>
+                <form
+                    className={cx("reservationContainer")}
+                    onSubmit={handleSubmit(onSubmit)}
+                >
                     <div className={cx("reservationForm")}>
                         <div className={cx("calander")}>
                             <Calander />
@@ -31,7 +55,7 @@ const Reservation = () => {
                                 예약자 정보
                             </h2>
                             <p className={cx("reservationDetail")}>
-                                검진 예약을 위한 최소한의 입력사항입니다.{" "}
+                                검진 예약을 위한 최소한의 입력사항입니다.
                                 <br></br>
                                 예약하시는 분의 정보를 입력해주세요.
                             </p>
@@ -48,8 +72,14 @@ const Reservation = () => {
                                 />
                             </div>
                             <div className={cx("reservatioInput")}>
-                                <TextInput label="예약자명" {...inputSize} />
+                                <TextInput
+                                    label="예약자명"
+                                    {...inputSize}
+                                    requiredSymbol="*"
+                                />
+
                                 <BirthInput />
+
                                 <PhoneInput />
                             </div>
                             <div className={cx("checkupContainer")}>
@@ -67,6 +97,7 @@ const Reservation = () => {
                                         label="건강검진"
                                         name="type"
                                         value="health-care"
+                                        onChange={handleRadioChange}
                                     />
                                 </div>
                                 <div className={cx("reservationCard")}>
@@ -89,9 +120,11 @@ const Reservation = () => {
                             label="예약하기"
                             backgroundColor="#FFEA3C"
                             borderColor="#BFC662"
+                            disabled={isSubmitting}
+                            type="submit"
                         />
                     </div>
-                </div>
+                </form>
             </section>
         </div>
     );
