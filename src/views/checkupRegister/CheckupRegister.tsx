@@ -1,11 +1,11 @@
 "use client";
-
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./CheckupRegister.module.scss";
 import Button from "@/components/Button/Button";
 import TextInput from "@/components/TextField/TextInput/TextInput";
 import Radio from "@/components/Radio/Radio";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 const cx = cn.bind(styles);
 
@@ -23,8 +23,31 @@ const CheckupRegister = () => {
     /** TextInput창 크기 */
     const inputSize = { width: "100%", height: "48px" };
 
+    type FormData = {
+        reservationTime: number;
+        gender: "male" | "female";
+        consentOption: "";
+    };
+    const {
+        register,
+        handleSubmit,
+        formState: { isSubmitting, errors },
+        clearErrors,
+    } = useForm<FormData>();
+
+    const onSubmit: SubmitHandler<FormData> = (data) => {
+        console.log(data);
+    };
+
+    const handleRadioChange = () => {
+        clearErrors(["gender", "consentOption"]);
+    };
+
     return (
-        <div className={cx("checkupRegisterWrapper")}>
+        <form
+            className={cx("checkupRegisterWrapper")}
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <section className={cx("checkupRegisterSection")}>
                 <h1 className={cx("checkupRegisterTitle")}>건강 검진 등록</h1>
                 <div className={cx("checkupRegisterContainer")}>
@@ -65,13 +88,32 @@ const CheckupRegister = () => {
                     </div>
                     <div className={cx("reserverInfo")}>
                         <div className={cx("reserverTextInput")}>
-                            <TextInput label="예약 희망 날짜" {...inputSize} />
+                            <TextInput
+                                label="예약 희망 날짜"
+                                {...inputSize}
+                                readOnly
+                            />
                             <div className={cx("selectTIime")}>
                                 <p>예약 희망 시간</p>
                                 <div className={cx("selectTIimeInput")}>
-                                    <input type="text" />
+                                    <input
+                                        type="text"
+                                        {...register("reservationTime", {
+                                            required: "시간을 입력해주세요",
+                                        })}
+                                    />
                                     <p>:</p>
-                                    <input type="text" />
+                                    <input
+                                        type="text"
+                                        {...register("reservationTime", {
+                                            required: "시간을 입력해주세요",
+                                        })}
+                                    />
+                                    {errors.reservationTime && (
+                                        <span className={cx("errorMessage")}>
+                                            {errors.reservationTime?.message}
+                                        </span>
+                                    )}
                                 </div>
                             </div>
                             <TextInput
@@ -91,9 +133,28 @@ const CheckupRegister = () => {
                             <span>성 별</span>
                             <span className={cx("requiredSymbol")}>*</span>
                             <div className={cx("selectGenderInput")}>
-                                <Radio label="남자" name="type" value="m" />
-                                <Radio label="여자" name="type" value="w" />
+                                <Radio
+                                    label="남자"
+                                    value="male"
+                                    {...register("gender", {
+                                        required: "성별을 선택해주세요",
+                                    })}
+                                    onChange={handleRadioChange}
+                                />
+                                <Radio
+                                    label="여자"
+                                    value="female"
+                                    {...register("gender", {
+                                        required: "성별을 선택해주세요",
+                                    })}
+                                    onChange={handleRadioChange}
+                                />
                             </div>
+                            {errors.gender && (
+                                <span className={cx("errorMessage")}>
+                                    {errors.gender?.message}
+                                </span>
+                            )}
                         </div>
                         <div className={cx("reserverTextInput")}>
                             <TextInput
@@ -170,9 +231,17 @@ const CheckupRegister = () => {
                                 <p>개인정보의 수집ㆍ이용 (필수 사항)</p>
                                 <Radio
                                     label="위와 같이 개인정보를 수집ㆍ이용하는데 동의합니다."
-                                    name="type"
-                                    value="consentOption"
-                                />
+                                    value="agree"
+                                    {...register("consentOption", {
+                                        required: "항목에 동의해주세요",
+                                    })}
+                                    onChange={handleRadioChange}
+                                />{" "}
+                                {errors.consentOption && (
+                                    <span className={cx("errorMessage")}>
+                                        {errors.consentOption?.message}
+                                    </span>
+                                )}
                             </div>
                             <div className={cx("privacyPolicy")}>
                                 <p>
@@ -181,9 +250,17 @@ const CheckupRegister = () => {
                                 </p>
                                 <Radio
                                     label="위와 같이 개인정보를 수집ㆍ이용하는데 동의합니다."
-                                    name="type"
-                                    value="consentOption"
+                                    value="agree"
+                                    {...register("consentOption", {
+                                        required: "항목에 동의해주세요",
+                                    })}
+                                    onChange={handleRadioChange}
                                 />
+                                {errors.consentOption && (
+                                    <span className={cx("errorMessage")}>
+                                        {errors.consentOption?.message}
+                                    </span>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -192,11 +269,13 @@ const CheckupRegister = () => {
                             label="등록하기"
                             backgroundColor="#FFEA3C"
                             borderColor="#BFC662"
+                            disabled={isSubmitting}
+                            type="submit"
                         />
                     </div>
                 </div>
             </section>
-        </div>
+        </form>
     );
 };
 
