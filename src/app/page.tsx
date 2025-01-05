@@ -1,11 +1,11 @@
-import Reservation from "@/views/reservation/Reservation";
+import LoginView from "@/views/login/Login";
 
 const Home = () => {
-  return (
-    <div>
-      <Reservation></Reservation>
-    </div>
-  );
+    return (
+        <div>
+            <LoginView />
+        </div>
+    );
 };
 
 export default Home;
