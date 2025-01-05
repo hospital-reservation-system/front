@@ -5,11 +5,13 @@ import { useForm } from "react-hook-form";
 import TextInput from "@/components/TextField/TextInput/TextInput";
 import Button from "@/components/Button/Button";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
 type LoginFormType = {
-    id: string;
+    email: string;
     password: string;
 };
 
@@ -20,14 +22,34 @@ const LoginView = () => {
         formState: { errors },
     } = useForm<LoginFormType>({
         defaultValues: {
-            id: "",
+            email: "",
             password: "",
         },
     });
 
-    const onSubmit = (data: LoginFormType) => {
-        console.log(data);
-        // TODO: 로그인 API 호출 로직 구현
+    const router = useRouter();
+
+    const onSubmit = async (data: LoginFormType) => {
+        console.log("로그인 데이터:", data);
+        try {
+            const response = await axios.post<loginResponse>(
+                "http://localhost:4000/api/auth/login",
+                data,
+                {
+                    withCredentials: true,
+                }
+            );
+            // console.log("서버 응답:", response.data);
+            const { accessToken, refreshToken } = response.data;
+
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+
+            router.push("/reservation");
+        } catch {
+            alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+            // console.error("로그인 오류:", error);
+        }
     };
 
     return (
@@ -40,7 +62,7 @@ const LoginView = () => {
                 <div className={cx("input_group")}>
                     <TextInput
                         label="아이디"
-                        {...register("id", {
+                        {...register("email", {
                             required: "아이디를 입력해주세요",
                             minLength: {
                                 value: 4,
@@ -48,9 +70,9 @@ const LoginView = () => {
                             },
                         })}
                     />
-                    {errors.id && (
+                    {errors.email && (
                         <span className={cx("errorMessage")}>
-                            {errors.id?.message}
+                            {errors.email?.message}
                         </span>
                     )}
                 </div>
