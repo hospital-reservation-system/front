@@ -3,7 +3,8 @@
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./Fab.module.scss";
-
+// import TextInput from "../TextInput/TextInput";
+import Link from "next/link";
 const cx = cn.bind(styles);
 
 const Fab = () => {
@@ -33,14 +34,16 @@ const Fab = () => {
                 />
                 <span>공유하기</span>
             </div> */}
-            <div className={cx("fabButton")}>
-                <img
-                    src="/images/location.png"
-                    alt="오시는길"
-                    className={cx("location")}
-                />
-                <span>오시는길</span>
-            </div>
+            <Link href="productRegister">
+                <div className={cx("fabButton")}>
+                    <img
+                        src="/images/location.png"
+                        alt="오시는길"
+                        className={cx("location")}
+                    />
+                    <span>오시는길</span>
+                </div>
+            </Link>
         </div>
     );
 };
