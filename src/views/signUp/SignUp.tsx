@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Signup.module.scss";
 import cn from "classnames/bind";
 import { useForm } from "react-hook-form";
@@ -35,11 +35,12 @@ const SignupView = () => {
         register,
         handleSubmit,
         setValue,
+        clearErrors,
         formState: { errors },
     } = useForm<SignupFormType>();
 
     const router = useRouter();
-    const [businessNumber, setbusinessNumber] = useState("");
+    const [businessNumber, setBusinessNumber] = useState("");
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target.value.replace(/[^0-9]/g, "");
@@ -54,13 +55,18 @@ const SignupView = () => {
             )}-${input.slice(7, 11)}`;
         }
 
-        setbusinessNumber(formatted);
+        setBusinessNumber(formatted);
         setValue("hospital.businessNumber", formatted, {
             shouldValidate: true,
         });
     };
 
     const onSubmit = async (data: SignupFormType) => {
+        if (!data.hospital.businessNumber) {
+            clearErrors("hospital.businessNumber");
+            return;
+        }
+
         try {
             if (data.password !== data.passwordCheck) {
                 alert("비밀번호가 일치하지 않습니다.");
@@ -94,11 +100,6 @@ const SignupView = () => {
             }
         }
     };
-    useEffect(() => {
-        setValue("hospital.businessNumber", businessNumber, {
-            shouldValidate: true,
-        });
-    }, [businessNumber, setValue]);
 
     return (
         <div className={cx("signup_wrap")}>
