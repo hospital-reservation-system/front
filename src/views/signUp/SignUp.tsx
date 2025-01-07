@@ -17,13 +17,17 @@ type SignupFormType = {
     passwordCheck: string;
     name: string;
     email: string;
-    address: {
-        zipcode: string;
-        basic: string;
-        detail: string;
+    hospital: {
+        hospitalName?: string;
+        latitude?: string;
+        longitude?: string;
+        businessNumber?: string;
+        address: {
+            zipcode: string;
+            basic: string;
+            detail: string;
+        };
     };
-    agreement: string;
-    phone: string;
 };
 
 const SignupView = () => {
@@ -35,7 +39,7 @@ const SignupView = () => {
     } = useForm<SignupFormType>();
 
     const router = useRouter();
-    const [phone, setPhone] = useState("");
+    const [businessNumber, setbusinessNumber] = useState("");
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target.value.replace(/[^0-9]/g, "");
@@ -50,8 +54,10 @@ const SignupView = () => {
             )}-${input.slice(7, 11)}`;
         }
 
-        setPhone(formatted);
-        setValue("phone", formatted, { shouldValidate: true });
+        setbusinessNumber(formatted);
+        setValue("hospital.businessNumber", formatted, {
+            shouldValidate: true,
+        });
     };
 
     const onSubmit = async (data: SignupFormType) => {
@@ -69,6 +75,9 @@ const SignupView = () => {
                     email: data.email,
                     password: data.password,
                     name: data.name,
+                    address: data.hospital.address,
+                    businessNumber: data.hospital.businessNumber,
+                    hospital: data.hospital,
                 }
             );
 
@@ -85,10 +94,11 @@ const SignupView = () => {
             }
         }
     };
-
     useEffect(() => {
-        setValue("phone", phone, { shouldValidate: true });
-    }, [phone, setValue]);
+        setValue("hospital.businessNumber", businessNumber, {
+            shouldValidate: true,
+        });
+    }, [businessNumber, setValue]);
 
     return (
         <div className={cx("signup_wrap")}>
@@ -116,7 +126,6 @@ const SignupView = () => {
                         </span>
                     )}
                 </div>
-
                 <div className={cx("form_row")}>
                     <TextInput
                         label="비밀번호"
@@ -137,7 +146,6 @@ const SignupView = () => {
                         </span>
                     )}
                 </div>
-
                 <div className={cx("form_row")}>
                     <TextInput
                         label="비밀번호 확인"
@@ -154,7 +162,6 @@ const SignupView = () => {
                         </span>
                     )}
                 </div>
-
                 <div className={cx("form_row")}>
                     <TextInput
                         label="이름"
@@ -170,13 +177,27 @@ const SignupView = () => {
                         </span>
                     )}
                 </div>
-
+                <div className={cx("form_row")}>
+                    <TextInput
+                        label="이메일"
+                        width="100%"
+                        height={40}
+                        {...register("email", {
+                            required: "이메일을 입력해주세요",
+                        })}
+                    />
+                    {errors.email && (
+                        <span className={cx("errorMessage")}>
+                            {errors.email.message}
+                        </span>
+                    )}
+                </div>
                 <div className={cx("address_section")}>
                     <div className={cx("zipcode_group")}>
                         <TextInput
                             label="우편번호"
                             placeholder="우편번호"
-                            {...register("address.zipcode", {
+                            {...register("hospital.address.zipcode", {
                                 required: "우편번호를 입력해주세요",
                             })}
                             width="100%"
@@ -190,44 +211,58 @@ const SignupView = () => {
                     </div>
                     <TextInput
                         placeholder="기본주소"
-                        {...register("address.basic", {
+                        {...register("hospital.address.basic", {
                             required: "기본주소를 입력해주세요",
                         })}
                         width="100%"
                     />
                     <TextInput
                         placeholder="상세주소"
-                        {...register("address.detail", {
+                        {...register("hospital.address.detail", {
                             required: "상세주소를 입력해주세요",
                         })}
                         width="100%"
                     />
-                    {(errors.address?.zipcode ||
-                        errors.address?.basic ||
-                        errors.address?.detail) && (
+                    {(errors?.hospital?.address?.zipcode ||
+                        errors?.hospital?.address?.basic ||
+                        errors?.hospital?.address?.detail) && (
                         <span className={cx("errorMessage")}>
                             주소를 입력해주세요.
                         </span>
                     )}
                 </div>
-                <div className={cx("phone")}>
+                <div className={cx("form_row")}>
                     <TextInput
-                        label="휴대전화"
-                        value={phone}
+                        label="병원 이름"
                         width="100%"
                         height={40}
-                        {...register("phone", {
+                        {...register("hospital.hospitalName", {
+                            required: "병원 이름을 입력해주세요",
+                        })}
+                    />
+                    {errors.hospital?.hospitalName && (
+                        <span className={cx("errorMessage")}>
+                            {errors.hospital.hospitalName.message}
+                        </span>
+                    )}
+                </div>
+                <div className={cx("phone")}>
+                    <TextInput
+                        label="전화번호"
+                        value={businessNumber}
+                        width="100%"
+                        height={40}
+                        {...register("hospital.businessNumber", {
                             required: "전화번호를 입력해주세요",
                         })}
                         onChange={handlePhoneChange}
                     />
-                    {errors.phone && (
+                    {errors.hospital?.businessNumber && (
                         <span className={cx("errorMessage")}>
-                            {errors.phone?.message}
+                            {errors.hospital?.businessNumber.message}
                         </span>
                     )}
                 </div>
-
                 <div className={cx("submit_btn_wrap")}>
                     <Button
                         type="submit"

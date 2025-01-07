@@ -7,12 +7,19 @@ interface ILoginResponse {
     name: string;
     /** 이메일 */
     email: string;
-    /** 전화번호 */
-    businessNumber: string;
     /** 권한 */
     role?: role;
-    /** 위도 */
-    latitude: string;
-    /** 경도 */
-    longitude: string;
+    /** 병원 */
+    hospital?: {
+        /** 이름 */
+        hospitalName?: string;
+        /** 주소 */
+        address?: string;
+        /** 위도 */
+        latitude?: string;
+        /** 경도 */
+        longitude?: string;
+        /** 전화번호 */
+        businessNumber?: string;
+    };
 }
