@@ -25,9 +25,8 @@ export class ProductService {
     // 상품 조회
     async getProducts(req: getProductsRequest): Promise<getProductsResponse> {
         const { path } = req;
-        const { data } = await this._ajax.get(
-            pathToUrl(PRODUCT_ROUTES.GET_PRODUCTS, path)
-        );
+        const url = pathToUrl(PRODUCT_ROUTES.GET_PRODUCTS, path);
+        const { data } = await this._ajax.get(url);
         return data;
     }
 
@@ -36,9 +35,8 @@ export class ProductService {
         req: getProductByIdRequest
     ): Promise<getProductByIdResponse> {
         const { path } = req;
-        const { data } = await this._ajax.get(
-            pathToUrl(PRODUCT_ROUTES.GET_PRODUCT, path)
-        );
+        const url = pathToUrl(PRODUCT_ROUTES.GET_PRODUCT, path);
+        const { data } = await this._ajax.get(url);
         return data;
     }
 
@@ -68,14 +66,11 @@ export class ProductService {
         if (!body.hospital) {
             throw new Error("병원 이름이 필요합니다.");
         }
-
-        const { data } = await this._ajax.put(
-            pathToUrl(PRODUCT_ROUTES.UPDATE_PRODUCT, path),
-            {
-                ...body,
-                hospital: body.hospital,
-            }
-        );
+        const url = pathToUrl(PRODUCT_ROUTES.UPDATE_PRODUCT, path);
+        const { data } = await this._ajax.put(url, {
+            ...body,
+            hospital: body.hospital,
+        });
         return data;
     }
 
@@ -84,9 +79,8 @@ export class ProductService {
         req: deleteProductRequest
     ): Promise<deleteProductResponse> {
         const { path } = req;
-        const { data } = await this._ajax.delete(
-            pathToUrl(PRODUCT_ROUTES.DELETE_PRODUCT, path)
-        );
+        const url = pathToUrl(PRODUCT_ROUTES.DELETE_PRODUCT, path);
+        const { data } = await this._ajax.delete(url);
         return data;
     }
 }

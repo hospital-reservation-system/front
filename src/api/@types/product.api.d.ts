@@ -1,10 +1,11 @@
 /** 상품 조회 요청 */
 type getProductsRequestPath = {
-    hospital: string;
+    hospitalName: string;
+    address: string;
+    latitude?: string;
+    longitude?: string;
+    businessNumber: string;
 };
-
-type getProductsRequestParams = {};
-type getProductsRequestBody = {};
 
 /** 상품 조회 요청 */
 type getProductsRequest = {
@@ -16,13 +17,10 @@ type getProductsRequest = {
 /** 상품 조회 응답 */
 type getProductsResponse = Array<IProductResponseDTO>;
 
-/** 상품 상세 조회 요청  */
+/** 상품 상세 조회 요청 */
 type getProductByIdRequestPath = {
     id: string;
 };
-
-type getProductByIdRequestParams = {};
-type getProductByIdRequestBody = {};
 
 /** 상품 상세 조회 요청 */
 type getProductByIdRequest = {
@@ -36,16 +34,6 @@ type getProductByIdResponse = IProductResponseDTO | null;
 
 /** 상품 생성 요청 */
 type createProductRequestPath = {};
-type createProductRequestParams = {};
-
-type createProductRequestBody = {
-    id?: string;
-    name: string;
-    price: number;
-    description: string;
-    selective?: string[];
-    hospital: string;
-};
 
 /** 상품 생성 요청 */
 type createProductRequest = {
@@ -59,17 +47,10 @@ type createProductResponse = IProductResponseDTO;
 
 /** 상품 수정 요청  */
 type updateProductRequestPath = {};
-type updateProductRequestParams = {
-    id: string;
-};
-
-type updateProductRequestBody = Omit<IProduct, "id"> & {
-    hospital: string;
-};
 
 /** 상품 수정 요청 */
 type updateProductRequest = {
-    params?: updateProductRequestParams;
+    params: updateProductRequestParams;
     path: updateProductRequestPath;
     body: updateProductRequestBody;
 };
@@ -79,15 +60,10 @@ type updateProductResponse = void;
 
 /** 상품 삭제 요청  */
 type deleteProductRequestPath = {};
-type deleteProductRequestParams = {
-    id: string;
-};
-
-type deleteProductRequestBody = {};
 
 /** 상품 삭제 요청 */
 type deleteProductRequest = {
-    params?: deleteProductRequestParams;
+    params: deleteProductRequestParams;
     path: deleteProductRequestPath;
     body?: deleteProductRequestBody;
 };
