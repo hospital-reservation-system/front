@@ -4,12 +4,12 @@ type loginRequestBody = {
     name: string;
     email: string;
     role?: role;
-    hospital?: {
-        hospitalName?: string;
-        address?: string;
+    hospital: {
+        hospitalName: string;
+        address: string;
         latitude?: string;
         longitude?: string;
-        businessNumber?: string;
+        businessNumber: string;
     };
 };
 
@@ -23,12 +23,12 @@ type ILoginResponse = {
     name: string;
     email: string;
     role?: role;
-    hospital?: {
-        hospitalName?: string;
-        address?: string;
+    hospital: {
+        hospitalName: string;
+        address: string;
         latitude?: string;
         longitude?: string;
-        businessNumber?: string;
+        businessNumber: string;
     };
 };
 

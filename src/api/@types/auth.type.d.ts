@@ -10,16 +10,16 @@ interface ILoginResponse {
     /** 권한 */
     role?: role;
     /** 병원 */
-    hospital?: {
+    hospital: {
         /** 이름 */
-        hospitalName?: string;
+        hospitalName: string;
         /** 주소 */
-        address?: string;
+        address: string;
         /** 위도 */
         latitude?: string;
         /** 경도 */
         longitude?: string;
         /** 전화번호 */
-        businessNumber?: string;
+        businessNumber: string;
     };
 }

@@ -18,10 +18,10 @@ type SignupFormType = {
     name: string;
     email: string;
     hospital: {
-        hospitalName?: string;
+        hospitalName: string;
         latitude?: string;
         longitude?: string;
-        businessNumber?: string;
+        businessNumber: string;
         address: {
             zipcode: string;
             basic: string;
