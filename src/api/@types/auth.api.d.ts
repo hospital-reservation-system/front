@@ -1,6 +1,16 @@
 type loginRequestBody = {
-    email: string;
+    id: string;
     password: string;
+    name: string;
+    email: string;
+    role?: role;
+    hospital: {
+        hospitalName: string;
+        address: string;
+        latitude?: string;
+        longitude?: string;
+        businessNumber: string;
+    };
 };
 
 type loginRequest = {
@@ -9,8 +19,17 @@ type loginRequest = {
 
 type ILoginResponse = {
     id: string;
-    email: string;
+    password: string;
     name: string;
+    email: string;
+    role?: role;
+    hospital: {
+        hospitalName: string;
+        address: string;
+        latitude?: string;
+        longitude?: string;
+        businessNumber: string;
+    };
 };
 
 type loginResponse = {

@@ -1,14 +1,14 @@
-interface ILoginResponse {
+interface IProduct {
     /** ID */
-    id: string;
-    /** 비밀번호 */
-    password: string;
-    /** 이름 */
+    id?: string;
+    /** 상품명 */
     name: string;
-    /** 이메일 */
-    email: string;
-    /** 권한 */
-    role?: role;
+    /** 상품 가격 */
+    price: number;
+    /** 상품 설명 */
+    description: string;
+    /** 선택검사 */
+    selective?: string[];
     /** 병원 */
     hospital: {
         /** 이름 */

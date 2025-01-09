@@ -10,6 +10,10 @@ import { useRouter } from "next/navigation";
 
 const cx = cn.bind(styles);
 
+type loginResponse = {
+    data: string;
+};
+
 type LoginFormType = {
     email: string;
     password: string;
@@ -30,7 +34,6 @@ const LoginView = () => {
     const router = useRouter();
 
     const onSubmit = async (data: LoginFormType) => {
-        console.log("로그인 데이터:", data);
         try {
             const response = await axios.post<loginResponse>(
                 "http://localhost:4000/api/auth/login",
@@ -39,16 +42,25 @@ const LoginView = () => {
                     withCredentials: true,
                 }
             );
-            // console.log("서버 응답:", response.data);
-            const { accessToken, refreshToken } = response.data;
 
-            localStorage.setItem("accessToken", accessToken);
-            localStorage.setItem("refreshToken", refreshToken);
+            const { data: token } = response.data;
 
-            router.push("/reservation");
-        } catch {
-            alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-            // console.error("로그인 오류:", error);
+            if (token) {
+                localStorage.setItem("accessToken", token);
+                localStorage.setItem("refreshToken", token);
+                router.push("/reservation");
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                console.error("서버 오류:", error.response.data);
+                alert(
+                    error.response.data.message ||
+                        "아이디 또는 비밀번호가 일치하지 않습니다."
+                );
+            } else {
+                console.error("로그인 오류:", error);
+                alert("로그인 처리 중 오류가 발생했습니다.");
+            }
         }
     };
 
