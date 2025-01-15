@@ -54,6 +54,8 @@ const ProductRegister = () => {
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         try {
             const priceWithoutCommas = String(formattedPrice).replace(/,/g, "");
+            const hospital = data.hospital;
+
             const response = await fetch("/api/product", {
                 method: "POST",
                 headers: {
@@ -64,7 +66,7 @@ const ProductRegister = () => {
                     description: data.productDetail,
                     price: Number(priceWithoutCommas),
                     selective: data.selective,
-                    hospital: data.hospital,
+                    hospital: hospital,
                 }),
             });
 
