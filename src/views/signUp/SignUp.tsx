@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Signup.module.scss";
 import cn from "classnames/bind";
 import { useForm } from "react-hook-form";
@@ -8,8 +8,15 @@ import TextInput from "@/components/TextField/TextInput/TextInput";
 import Button from "@/components/Button/Button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import DaumPostcode from "react-daum-postcode";
 
-const cx = cn.bind(styles);
+type AddressData = {
+    zonecode: string;
+    address: string;
+    addressEnglish: string;
+    roadAddress: string;
+    jibunAddress: string;
+};
 
 type SignupFormType = {
     id: string;
@@ -30,6 +37,8 @@ type SignupFormType = {
     };
 };
 
+const cx = cn.bind(styles);
+
 const SignupView = () => {
     const {
         register,
@@ -41,6 +50,27 @@ const SignupView = () => {
 
     const router = useRouter();
     const [businessNumber, setBusinessNumber] = useState("");
+    const [isPostcodeOpen, setIsPostcodeOpen] = useState(false);
+
+    useEffect(() => {
+        if (isPostcodeOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }, [isPostcodeOpen]);
+
+    const themeObj = {
+        bgColor: "#FFFCE3",
+    };
+
+    const postCodeStyle = {
+        display: "block",
+        top: "0%",
+        width: "50vh",
+        minHeight: "60vh",
+        padding: "7px",
+    };
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target.value.replace(/[^0-9]/g, "");
@@ -99,6 +129,21 @@ const SignupView = () => {
                 console.error("알 수 없는 에러:", error);
             }
         }
+    };
+
+    const openPostcode = () => {
+        setIsPostcodeOpen(true);
+    };
+
+    const closePostcode = () => {
+        setIsPostcodeOpen(false);
+    };
+
+    const handlePostcodeComplete = (data: AddressData) => {
+        const { zonecode, address } = data;
+        setValue("hospital.address.zipcode", zonecode);
+        setValue("hospital.address.basic", address);
+        closePostcode();
     };
 
     return (
@@ -178,21 +223,6 @@ const SignupView = () => {
                         </span>
                     )}
                 </div>
-                <div className={cx("form_row")}>
-                    <TextInput
-                        label="이메일"
-                        width="100%"
-                        height={40}
-                        {...register("email", {
-                            required: "이메일을 입력해주세요",
-                        })}
-                    />
-                    {errors.email && (
-                        <span className={cx("errorMessage")}>
-                            {errors.email.message}
-                        </span>
-                    )}
-                </div>
                 <div className={cx("address_section")}>
                     <div className={cx("zipcode_group")}>
                         <TextInput
@@ -208,6 +238,7 @@ const SignupView = () => {
                             backgroundColor="#FFEA3C"
                             borderColor="#BFC662"
                             className={cx("search_btn")}
+                            onClick={openPostcode}
                         />
                     </div>
                     <TextInput
@@ -274,6 +305,27 @@ const SignupView = () => {
                     />
                 </div>
             </form>
+
+            {/* Daum Postcode 주소 검색 팝업 */}
+            {isPostcodeOpen && (
+                <div className={cx("overlay")}>
+                    <div className={cx("postcode_wrap")}>
+                        <DaumPostcode
+                            theme={themeObj}
+                            style={postCodeStyle}
+                            onComplete={handlePostcodeComplete}
+                        />
+                        <div className={cx("close_btn")}>
+                            <Button
+                                label="닫기"
+                                onClick={closePostcode}
+                                backgroundColor="#FFEA3C"
+                                borderColor="#BFC662"
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
