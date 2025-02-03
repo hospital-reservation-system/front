@@ -3,9 +3,7 @@ import Image from "next/image";
 import cn from "classnames/bind";
 import styles from "./Header.module.scss";
 import headerLogo from "../../../public/images/easycare2.png";
-// import TextInput from "../TextInput/TextInput";
 import Link from "next/link";
-import SearchBar from "../SearchBar/SearchBar";
 
 const cx = cn.bind(styles);
 
@@ -23,13 +21,17 @@ const Header = () => {
                     </p>
                 </Link>
 
-                <div className={cx("searchBar")}>
-                    {/* <TextInput.Input
-            type="text"
-            name="search"
-            className={cx("searchInput")}
-          /> */}
-                    <SearchBar />
+                <div className={cx("loginContainer")}>
+                    <Link href={"/login"}>
+                    <div className={cx("imageBox")}>
+                    <img
+                        src="/images/login.png"
+                        alt="예약조회"
+                        className={cx("loginIcon")}
+                    />
+                    <span>관리자 로그인</span>
+                    </div>
+                    </Link>
                 </div>
             </div>
         </div>

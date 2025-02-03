@@ -1,9 +1,9 @@
-import LoginView from "@/views/login/Login";
+import ProductList from "@/views/productList/productList";
 
 const Home = () => {
     return (
         <div>
-            <LoginView />
+            <ProductList />
         </div>
     );
 };

@@ -1,10 +1,10 @@
 import React from "react";
-import HospitalList from "@/views/hospitalList/hospitalList";
+import ReservationCheck from "@/views/reservationCheck/ReservationCheck";
 
 export default async function Home() {
   return (
     <React.Fragment>
-      <HospitalList />
+      <ReservationCheck />
     </React.Fragment>
   );
 }
