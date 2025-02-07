@@ -57,7 +57,7 @@ const Birth: React.FC<BirthProps> = ({ value = "", onBirthChange }) => {
       setMonth(month || "");
       setDay(day || "");
     }
-  }, [value]);
+  }, [value, day, month, year]);
 
   useEffect(() => {
     if (year && month && day) {

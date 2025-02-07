@@ -3,10 +3,8 @@
 import React from "react";
 import cn from "classnames/bind";
 import styles from "./productList.module.scss";
-// import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
 import Button from "@/components/Button/Button";
 
 const cx = cn.bind(styles);
@@ -58,18 +56,39 @@ const ProductView = () => {
     getProducts();
   }, []);
 
+  // const handleReservationClick = (
+  //   productId: string,
+  //   hospitalId: string,
+  //   hospital: string,
+  //   productName: string,
+  //   productPrice: number
+  // ) => {
+  //   router.push(
+  //     `/reservation?productId=${productId}&hospitalId=${hospitalId}&hospital=${hospital}&productName=${encodeURIComponent(
+  //       productName
+  //     )}&productPrice=${productPrice}`
+  //   );
+  // };
   const handleReservationClick = (
     productId: string,
     hospitalId: string,
-    hospital: string,
+    hospitalName: string,
     productName: string,
     productPrice: number
   ) => {
-    router.push(
-      `/reservation?productId=${productId}&hospitalId=${hospitalId}&hospital=${hospital}&productName=${encodeURIComponent(
-        productName
-      )}&productPrice=${productPrice}`
-    );
+    // 여러 개의 데이터를 객체로 묶어서 저장
+    const reservationData = {
+      productId,
+      hospitalId,
+      hospitalName,
+      productName,
+      productPrice,
+    };
+
+    // 객체를 JSON 문자열로 변환 후 sessionStorage에 저장
+    sessionStorage.setItem("reservationData", JSON.stringify(reservationData));
+
+    router.push("/reservation");
   };
 
   const handleMapClick = (address: string) => {
@@ -91,18 +110,12 @@ const ProductView = () => {
                   <p className={cx("productDescription")}>
                     병원 : {product.hospitalId.hospitalName}
                   </p>
-                  {/* <p className={cx("productDescription")}>
-                    주소 : {product.hospitalId.address}
-                  </p> */}
                   <p className={cx("productPrice")}>
                     가격 : {product.price.toLocaleString()}
                   </p>
                   <p className={cx("productDescription")}>
                     설명 : {product.description}
                   </p>
-                  {/* <p className={cx("productDescription")}>
-                    주소 : {product.hospitalId.address}
-                  </p> */}
                 </div>
 
                 <div className={cx("productBtn")}>

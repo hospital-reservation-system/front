@@ -12,13 +12,32 @@ import EmailInput from "@/components/TextField/EmailInput/Email";
 import Radio from "@/components/Radio/Radio";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import DaumPostcode from "react-daum-postcode";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 
 const cx = cn.bind(styles);
 
 const Reservation = () => {
   /** TextInput창 크기 */
   const inputSize = { width: "100%", height: "48px" };
+
+  // const searchParams = useSearchParams();
+
+  // const getProductDetails = () => {
+  //   const productId = searchParams.get("productId");
+  //   const hospitalName = searchParams.get("hospital");
+  //   const productName = searchParams.get("productName");
+  //   const productPrice = searchParams.get("productPrice");
+
+  //   return {
+  //     productId,
+  //     hospitalName,
+  //     productName,
+  //     productPrice,
+  //   };
+  // };
+
+  // const { productId, hospitalName, productName, productPrice } =
+  //   getProductDetails();
 
   type FormData = {
     name: string;
@@ -45,6 +64,24 @@ const Reservation = () => {
     jibunAddress: string;
   };
 
+  type ReservationData = {
+    productId: string;
+    hospitalId: string;
+    hospitalName: string;
+    productName: string;
+    productPrice: number;
+  };
+
+  const [reservationData, setReservationData] =
+    useState<ReservationData | null>(null);
+
+  useEffect(() => {
+    const storedData = sessionStorage.getItem("reservationData");
+    if (storedData) {
+      setReservationData(JSON.parse(storedData)); // JSON 문자열을 객체로 변환
+    }
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -56,12 +93,6 @@ const Reservation = () => {
   } = useForm<FormData>();
 
   const [isPostcodeOpen, setIsPostcodeOpen] = useState(false);
-  const searchParams = useSearchParams();
-  const productId = searchParams.get("productId");
-  // const hospitalId = searchParams.get("hospitalId");
-  const hospitalName = searchParams.get("hospital");
-  const productName = searchParams.get("productName");
-  const productPrice = searchParams.get("productPrice");
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 
   useEffect(() => {
@@ -113,13 +144,12 @@ const Reservation = () => {
           address: data.address,
           gender: data.gender,
           email: data.email,
-          total_price: productPrice,
+          total_price: reservationData?.productPrice,
           memo: data.memo,
           date: data.reservationDate,
           time: data.reservationTime,
-          productId: productId,
-          // hospitalId: hospitalId,
-        }), // 폼 데이터를 JSON 형태로 변환
+          productId: reservationData?.productId,
+        }),
       });
 
       if (response.ok) {
@@ -133,14 +163,17 @@ const Reservation = () => {
       alert("서버와 통신 중 문제가 발생했습니다.");
     }
   };
+
   const handleRadioChange = (value: "public") => {
     setValue("reserveType", value);
     clearErrors("reserveType");
   };
+
   const handleGenderChange = (value: "male" | "female") => {
     setValue("gender", value);
     clearErrors("gender");
   };
+
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
     setValue("reservationDate", date);
@@ -164,9 +197,20 @@ const Reservation = () => {
 
             <div className={cx("reservationInfo")}>
               <h2 className={cx("reservationContent")}>예약 정보</h2>
-              <p className={cx("hospital")}>병원 : {hospitalName}</p>
-              <p className={cx("product")}>예약 상품 : {productName}</p>
-              <p className={cx("price")}>가격 : {productPrice}</p>
+              {/* <Suspense fallback={<div>Loading...</div>}> */}
+              {/* <p className={cx("hospital")}>병원 : {hospitalName}</p>
+                <p className={cx("product")}>예약 상품 : {productName}</p>
+                <p className={cx("price")}>가격 : {productPrice}</p> */}
+              <p className={cx("hospital")}>
+                병원 : {reservationData?.hospitalName}
+              </p>
+              <p className={cx("product")}>
+                예약 상품 : {reservationData?.productName}
+              </p>
+              <p className={cx("price")}>
+                가격 : {reservationData?.productPrice}
+              </p>
+              {/* </Suspense> */}
               <h2 className={cx("reservationUser")}>예약자 정보</h2>
               <p className={cx("reservationDetail")}>
                 검진 예약을 위한 최소한의 입력사항입니다.
@@ -180,11 +224,6 @@ const Reservation = () => {
                   {...inputSize}
                   requiredSymbol="*"
                 />
-                {/* {errors?.name && (
-                  <span className={cx("errorMessage")}>
-                    이름을 입력해주세요.
-                  </span>
-                )} */}
 
                 <div className={cx("radioContainer")}>
                   <p>
@@ -215,8 +254,8 @@ const Reservation = () => {
                   defaultValue=""
                   render={({ field }) => (
                     <BirthInput
-                      value={field.value} // react-hook-form에서 관리하는 값
-                      onBirthChange={(birth) => field.onChange(birth)} // 값이 변경되면 react-hook-form의 onChange 호출
+                      value={field.value}
+                      onBirthChange={(birth) => field.onChange(birth)}
                     />
                   )}
                 />
@@ -230,11 +269,11 @@ const Reservation = () => {
 
                 <Controller
                   control={control}
-                  name="tell" // tell 필드에 연결
+                  name="tell"
                   render={({ field }) => (
                     <PhoneInput
-                      value={field.value || ""} // 항상 string으로 전달
-                      onChange={(value) => field.onChange(value)} // 변경 시 onChange 호출
+                      value={field.value || ""}
+                      onChange={(value) => field.onChange(value)}
                     />
                   )}
                 />
@@ -272,13 +311,6 @@ const Reservation = () => {
                     })}
                     width="100%"
                   />
-                  {/* {(errors?.address?.zipcode ||
-                    errors?.address?.basic ||
-                    errors?.address?.detail) && (
-                    <span className={cx("errorMessage")}>
-                      주소를 입력해주세요.
-                    </span>
-                  )} */}
                 </div>
 
                 <div className={cx("time_section")}>
@@ -301,11 +333,6 @@ const Reservation = () => {
                     <option value="15:00">15:00</option>
                     <option value="16:00">16:00</option>
                   </select>
-                  {/* {errors?.reservationTime && (
-                    <span className={cx("errorMessage")}>
-                      {errors.reservationTime.message}
-                    </span>
-                  )} */}
                 </div>
 
                 <TextInput label="메모" {...inputSize} {...register("memo")} />
@@ -327,40 +354,28 @@ const Reservation = () => {
                   />
                 </div>
               </div>
+
+              <Button
+                label="예약하기"
+                type="submit"
+                disabled={isSubmitting}
+                backgroundColor="#FFEA3C"
+                borderColor="#BFC662"
+              />
             </div>
-          </div>
-          <div className={cx("reservationBtn")}>
-            <Button
-              label="예약하기"
-              backgroundColor="#FFEA3C"
-              borderColor="#BFC662"
-              disabled={isSubmitting}
-              type="submit"
-            />
           </div>
         </form>
-
-        {/* Daum Postcode 주소 검색 팝업 */}
-        {isPostcodeOpen && (
-          <div className={cx("overlay")}>
-            <div className={cx("postcode_wrap")}>
-              <DaumPostcode
-                theme={themeObj}
-                style={postCodeStyle}
-                onComplete={handlePostcodeComplete}
-              />
-              <div className={cx("close_btn")}>
-                <Button
-                  label="닫기"
-                  onClick={closePostcode}
-                  backgroundColor="#FFEA3C"
-                  borderColor="#BFC662"
-                />
-              </div>
-            </div>
-          </div>
-        )}
       </section>
+
+      {isPostcodeOpen && (
+        <div
+          className={cx("postCodeWrapper")}
+          onClick={closePostcode}
+          style={postCodeStyle}
+        >
+          <DaumPostcode onComplete={handlePostcodeComplete} theme={themeObj} />
+        </div>
+      )}
     </div>
   );
 };
