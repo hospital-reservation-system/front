@@ -12,13 +12,13 @@ const Bottom = () => {
     <div className={cx("bottomWrapper")}>
       <div className={cx("logoContainer")}>
         <Image
-          src="/images/bottomLogo.png"
+          src="/images/BottomLogo.png"
           alt=""
           className={cx("logoTitle")}
           width={212.17}
           height={50}
         />
-        {/* <img src="/images/bottomLogo.png" alt="" className={cx("logoTitle")} /> */}
+        {/* <img src="/images/BottomLogo.png" alt="" className={cx("logoTitle")} /> */}
       </div>
       <div className={cx("snsContainer")}>
         <Image src="/images/kakaotalk.png" alt="" width={25} height={25} />
