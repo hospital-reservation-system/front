@@ -43,7 +43,8 @@ const hospitalRequest = async () => {
     const token = localStorage.getItem("accessToken");
 
     const response = await axios.get<hospitalResponse>(
-      "http://localhost:4000/api/admin",
+      // "http://localhost:4000/api/admin",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/admin`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

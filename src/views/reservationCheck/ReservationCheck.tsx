@@ -51,7 +51,8 @@ const ReservationCheck = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/order/detail",
+        // "http://localhost:4000/api/order/detail",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/order/detail`,
         {
           params: { user_tell: phone },
         }

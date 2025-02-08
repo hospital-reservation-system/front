@@ -105,15 +105,19 @@ const SignupView = () => {
 
       console.log("유효한 데이터:", data);
 
-      const response = await axios.post("http://localhost:4000/api/admin", {
-        email: data.email,
-        password: data.password,
-        name: data.name,
-        address: data.hospital.address,
-        hospitalName: data.hospital.hospitalName,
-        businessNumber: data.hospital.businessNumber,
-        hospital: data.hospital,
-      });
+      const response = await axios.post(
+        // "http://localhost:4000/api/admin",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/admin`,
+        {
+          email: data.email,
+          password: data.password,
+          name: data.name,
+          address: data.hospital.address,
+          hospitalName: data.hospital.hospitalName,
+          businessNumber: data.hospital.businessNumber,
+          hospital: data.hospital,
+        }
+      );
 
       console.log("서버 응답:", response.data);
       router.push("/login");

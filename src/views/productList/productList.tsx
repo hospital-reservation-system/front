@@ -29,7 +29,8 @@ type ProductResponse = {
 const productRequest = async () => {
   try {
     const response = await axios.get<ProductResponse>(
-      "http://localhost:4000/api/product"
+      // "http://localhost:4000/api/product"
+      `${process.env.NEXT_PUBLIC_API_URL}/api/product`
     );
     console.log(response.data.data);
     return response.data.data;
@@ -97,6 +98,7 @@ const ProductView = () => {
     window.open(naverMapUrl, "_blank");
   };
 
+  console.log(process.env.NEXT_PUBLIC_API_URL);
   return (
     <div className={cx("productListWrapper")}>
       <section className={cx("productListSection")}>

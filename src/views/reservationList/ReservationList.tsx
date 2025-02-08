@@ -41,7 +41,8 @@ const reservationRequest = async () => {
     const token = localStorage.getItem("accessToken");
 
     const response = await axios.get<ReservationResponse>(
-      "http://localhost:4000/api/order",
+      // "http://localhost:4000/api/order",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/order`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
