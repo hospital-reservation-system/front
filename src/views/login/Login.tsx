@@ -105,7 +105,7 @@ const LoginView = () => {
     try {
       const response = await axios.post<loginResponse>(
         // "http://localhost:4000/api/auth/login",
-        `${process.env.NEXT_PUBLIC_API_URL}api/auth/login`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
         data,
         {
           withCredentials: true,
