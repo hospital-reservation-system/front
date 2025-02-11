@@ -107,7 +107,7 @@ const SignupView = () => {
 
       const response = await axios.post(
         // "http://localhost:4000/api/admin",
-        `${process.env.NEXT_PUBLIC_API_URL}/api/admin`,
+        `${process.env.NEXT_PUBLIC_API_URL}api/admin`,
         {
           email: data.email,
           password: data.password,
