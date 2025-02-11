@@ -109,6 +109,8 @@ const SignupView = () => {
         // "http://localhost:4000/api/admin",
         `${process.env.NEXT_PUBLIC_API_URL}/api/admin`,
         {
+          withCredentials: true,
+
           email: data.email,
           password: data.password,
           name: data.name,

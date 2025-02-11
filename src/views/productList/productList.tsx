@@ -31,8 +31,8 @@ const productRequest = async () => {
     console.log("요청 보내는 중");
     const response = await axios.get<ProductResponse>(
       // "http://localhost:4000/api/product"
-      `${process.env.NEXT_PUBLIC_API_URL}/api/product`
-      // `https://hospital-back.fly.dev/api/product`
+      `${process.env.NEXT_PUBLIC_API_URL}/api/product`,
+      { withCredentials: true }
     );
     console.log(response.data.data);
     return response.data.data;
