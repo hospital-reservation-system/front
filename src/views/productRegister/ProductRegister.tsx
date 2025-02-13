@@ -57,22 +57,25 @@ const ProductRegister = () => {
       const hospital = data.hospital;
       const token = localStorage.getItem("accessToken");
 
-      const response = await fetch("/api/product", {
-        method: "POST",
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/product`,
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          name: data.productName,
-          description: data.productDetail,
-          price: Number(priceWithoutCommas),
-          selective: data.selective,
-          hospital: hospital,
-        }),
-      });
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            name: data.productName,
+            description: data.productDetail,
+            price: Number(priceWithoutCommas),
+            selective: data.selective,
+            hospital: hospital,
+          }),
+        }
+      );
 
       const textResponse = await response.text();
       console.log("서버 응답:", textResponse);

@@ -132,25 +132,28 @@ const Reservation = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      const response = await fetch("/api/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          phone: data.tell,
-          birth: data.birth,
-          address: data.address,
-          gender: data.gender,
-          email: data.email,
-          total_price: reservationData?.productPrice,
-          memo: data.memo,
-          date: data.reservationDate,
-          time: data.reservationTime,
-          productId: reservationData?.productId,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/order`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: data.name,
+            phone: data.tell,
+            birth: data.birth,
+            address: data.address,
+            gender: data.gender,
+            email: data.email,
+            total_price: reservationData?.productPrice,
+            memo: data.memo,
+            date: data.reservationDate,
+            time: data.reservationTime,
+            productId: reservationData?.productId,
+          }),
+        }
+      );
 
       if (response.ok) {
         alert("예약이 성공적으로 완료되었습니다.");
